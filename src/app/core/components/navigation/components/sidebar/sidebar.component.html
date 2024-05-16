@@ -1,0 +1,34 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav
+    class="sidenav"
+    mode="side"
+    [class.menu-open]="isMenuOpen"
+    [class.menu-close]="!isMenuOpen"
+    opened>
+    <section class="title-container">
+      <h2>CodePedia</h2>
+    </section >
+    <section class="buttons">
+      <ng-container *ngFor="let entry of menuEntries">
+        <a
+          class="button"
+          *ngIf="!entry.children"
+          (click)="navigateRoute(entry.route)"
+          mat-button
+          matTooltip="{{ entry.text }}"
+          [matTooltipPositionAtOrigin]
+        >
+          <mat-icon>{{ entry.icon }}</mat-icon>
+          <span class="text-module" *ngIf="isMenuOpen">{{ entry.text }}</span>
+        </a>
+      </ng-container>
+    </section>
+  </mat-sidenav>
+  <mat-sidenav-content class="content"
+  [ngStyle]="{ 'margin-left.px': contentMargin }">
+    <div class="main-container">
+      <app-layout></app-layout>
+    </div>
+
+  </mat-sidenav-content>
+</mat-sidenav-container>

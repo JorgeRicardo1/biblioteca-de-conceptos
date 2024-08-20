@@ -14,6 +14,10 @@ export const routes: Routes = [
       {
         path: 'flexbox',
         loadComponent: () => import('./pages/flexbox/flexbox.component').then(m => m.FlexboxComponent)
+      },
+      {
+        path: 'grid',
+        loadComponent: () => import('./pages/grid/grid.component').then(m => m.GridComponent)
       }
 
     ]

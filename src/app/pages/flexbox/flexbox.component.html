@@ -1,1 +1,82 @@
-<p>flexbox works!</p>
+<section class="main-container">
+  <h3 class="title">Flex-box</h3>
+  <div class="container">
+    <div class="parameters-section">
+
+      <div>Numero de elementos</div>
+      <mat-form-field appearance="outline">
+        <input matInput type="number" [formControl]="numeroElementos">
+      </mat-form-field>
+
+      <div>flex-direction</div>
+      <mat-form-field appearance="outline">
+        <mat-select [(value)]="flexDirectionOption">
+          <mat-option value="row">row</mat-option>
+          <mat-option value="row-reverse">row-reverse</mat-option>
+          <mat-option value="column">column</mat-option>
+          <mat-option value="column-reverse">column-reverse</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <div>justify-content</div>
+      <mat-form-field appearance="outline">
+        <mat-select [(value)]="justifyContentOption">
+          <mat-option value="flex-start">flex-start</mat-option>
+          <mat-option value="flex-end">flex-end</mat-option>
+          <mat-option value="center">center</mat-option>
+          <mat-option value="space-between">space-between</mat-option>
+          <mat-option value="space-evenly">space-evenly</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <div>align-items</div>
+      <mat-form-field appearance="outline">
+        <mat-select [(value)]="alignItemsOption">
+          <mat-option value="flex-start">flex-start</mat-option>
+          <mat-option value="flex-end">flex-end</mat-option>
+          <mat-option value="center">center</mat-option>
+          <mat-option value="baseline">baseline</mat-option>
+          <mat-option value="stretch">stretch</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <div>flex-wrap</div>
+      <mat-form-field appearance="outline">
+        <mat-select [(value)]="flexWrapOption">
+          <mat-option value="nowrap">nowrap</mat-option>
+          <mat-option value="wrap">wrap</mat-option>
+          <mat-option value="wrap-reverse">wrap-reverse</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <div>align-content</div>
+      <mat-form-field appearance="outline">
+        <mat-select [(value)]="alignItemsOption">
+          <mat-option value="flex-start">flex-start</mat-option>
+          <mat-option value="flex-end">flex-end</mat-option>
+          <mat-option value="center">center</mat-option>
+          <mat-option value="space-between">space-between</mat-option>
+          <mat-option value="space-around">space-around</mat-option>
+          <mat-option value="stretch">stretch</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="exhibition-section">
+      <div class="flexbox-edit"
+      [ngStyle]="{
+        'flex-direction': flexDirectionOption,
+        'justify-content': justifyContentOption,
+        'align-items': alignItemsOption,
+        'flex-wrap' : flexWrapOption,
+        'align-content': alignItemsOption
+
+        }">
+        @for (elemento of elementosArray; track elemento) {
+          <div class="elemento">
+            {{ elemento }}
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+</section>

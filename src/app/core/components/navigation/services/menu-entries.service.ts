@@ -10,9 +10,9 @@ export class MenuEntriesService {
   constructor() { }
 
   private menu: MenuEntry[] = [
-    { text: 'flexbox', route: 'chat', icon: 'people'},
-    { text: 'grid', route: 'casos', icon: 'speed'},
-    { text: 'busqueda', route: 'help', icon: 'query_stats' },
+    { text: 'flexbox', route: 'flexbox', icon: 'people'},
+    { text: 'grid', route: 'grid', icon: 'speed'},
+
   ]
 
   // Método que retorna el menú hardcodeado

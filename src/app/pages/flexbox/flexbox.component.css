@@ -2,7 +2,7 @@
   padding: 5px;
 
   .title{
-    border: solid 1px red;
+    font-size: larger;
   }
 
   .container{
@@ -15,7 +15,6 @@
     }
 
     .exhibition-section{
-      border: solid 1px yellow;
       height: 300px;
       position: sticky;
 
@@ -33,16 +32,13 @@
     }
 
     .parameters-section{
-      border: solid 1px brown;
       display: flex;
 
       .parameters-section-container{
-        border: 1px solid red;
         flex: 1;
       }
 
       .parameters-section-item{
-        border: 1px solid blueviolet;
         flex: 1;
 
       }

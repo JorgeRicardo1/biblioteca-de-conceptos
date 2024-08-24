@@ -1,0 +1,117 @@
+// archivo src/custom-theme.scss (o styles.scss)
+
+@use '@angular/material' as mat;
+
+// Define la paleta de colores primaria
+$mi-paleta-primaria: (
+  50: #e3f2fd,
+  100: #bbdefb,
+  200: #90caf9,
+  300: #64b5f6,
+  400: #42a5f5,
+  500: #467a97, // color base
+  600: #1e88e5,
+  700: #1976d2,
+  800: #1565c0,
+  900: #0d47a1,
+  A100: #82b1ff,
+  A200: #448aff,
+  A400: #2979ff,
+  A700: #2962ff,
+  contrast: (
+    50: black,
+    100: black,
+    200: black,
+    300: black,
+    400: black,
+    500: white,
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+    A100: black,
+    A200: white,
+    A400: white,
+    A700: white,
+  )
+);
+
+// Define la paleta de colores acentuados
+$mi-paleta-accento: (
+  50: #fce4ec,
+  100: #f8bbd0,
+  200: #f48fb1,
+  300: #f06292,
+  400: #ec407a,
+  500: #8fc1e1, // color base
+  600: #d81b60,
+  700: #c2185b,
+  800: #ad1457,
+  900: #880e4f,
+  A100: #ff80ab,
+  A200: #ff4081,
+  A400: #f50057,
+  A700: #c51162,
+  contrast: (
+    50: black,
+    100: black,
+    200: black,
+    300: black,
+    400: black,
+    500: white,
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+    A100: black,
+    A200: white,
+    A400: white,
+    A700: white,
+  )
+);
+
+// Define la paleta de colores para advertencias
+$mi-paleta-warn: (
+  50: #ffebee,
+  100: #ffcdd2,
+  200: #ef9a9a,
+  300: #e57373,
+  400: #ef5350,
+  500: #f44336, // color base
+  600: #e53935,
+  700: #d32f2f,
+  800: #c62828,
+  900: #b71c1c,
+  A100: #ff8a80,
+  A200: #ff5252,
+  A400: #ff1744,
+  A700: #d50000,
+  contrast: (
+    50: black,
+    100: black,
+    200: black,
+    300: black,
+    400: black,
+    500: white,
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+    A100: black,
+    A200: white,
+    A400: white,
+    A700: white,
+  )
+);
+
+// Define el tema usando las paletas completas
+$mi-tema: mat.define-light-theme((
+  color: (
+    primary: mat.define-palette($mi-paleta-primaria),
+    accent: mat.define-palette($mi-paleta-accento),
+    warn: mat.define-palette($mi-paleta-warn),
+  ),
+));
+
+// Aplica el tema a todos los componentes de Angular Material
+@include mat.all-component-themes($mi-tema);

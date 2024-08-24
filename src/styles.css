@@ -2,3 +2,15 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+ /* .mdc-text-field--focused .mdc-notched-outline__notch {
+  border-color: red !important;
+}
+
+.mdc-text-field--focused .mdc-notched-outline__trailing {
+  border-color: red !important;
+}
+
+.mdc-text-field--focused .mdc-notched-outline__leading {
+  border-color: red !important;
+} */

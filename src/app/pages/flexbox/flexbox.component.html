@@ -1,25 +1,22 @@
 <section class="main-container">
-  <h3 class="title">Flex-box</h3>
+  <div class="title">Flex-box</div>
 
   <div class="container">
 
     <div class="controler-items">
 
-      <mat-form-field appearance="outline" color="accent">
+      <mat-form-field appearance="outline" class="control-item-container">
         <mat-label>Numero de elementos</mat-label>
         <input matInput type="number" [formControl]="numeroElementos">
       </mat-form-field>
 
 
-      <mat-form-field appearance="outline">
+      <mat-form-field appearance="outline" class="control-item-container">
         <mat-label>Width del elemento</mat-label>
         <input matInput type="number" [formControl]="widthElementos">
       </mat-form-field>
 
-      <mat-form-field appearance="outline">
-        <mat-label>Height del elemento</mat-label>
-        <input matInput type="number" [formControl]="heightElementos">
-      </mat-form-field>
+
 
     </div>
 
@@ -35,7 +32,7 @@
         @for (elemento of elementosArray; track elemento) {
         <div class="elemento" [ngStyle]="{
             'width.px': widthElementos.value,
-            'height.px': heightElementos.value
+
           }">
           {{ elemento }}
         </div>
@@ -141,14 +138,10 @@
         <mat-expansion-panel class="container-option-card">
           <mat-expansion-panel-header class="option-card-header">
             <mat-panel-title class="option-card-title">
-              <div class="option-title">flex-direction</div>
-              <mat-radio-group class="radiosB-container" [(ngModel)]="flexDirectionOption"
-                (ngModelChange)="onOptionChange($event, 'flexDirectionOption')">
-                <mat-radio-button class="" value="row" (click)="$event.stopPropagation()">row</mat-radio-button>
-                <mat-radio-button class="" value="row-reverse" (click)="$event.stopPropagation()">row-reverse</mat-radio-button>
-                <mat-radio-button class="" value="column" (click)="$event.stopPropagation()">column</mat-radio-button>
-                <mat-radio-button class="" value="column-reverse" (click)="$event.stopPropagation()">column-reverse</mat-radio-button>
-              </mat-radio-group>
+              <div class="option-title">flex-grow</div>
+              <mat-form-field appearance="outline" class="input-option-container">
+                <input class="input-option" matInput type="number">
+              </mat-form-field>
             </mat-panel-title>
 
           </mat-expansion-panel-header>

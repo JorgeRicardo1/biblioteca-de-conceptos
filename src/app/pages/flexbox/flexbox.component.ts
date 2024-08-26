@@ -27,7 +27,6 @@ export class FlexboxComponent {
   alignContentOption = 'stretch';
   numeroElementos =  new FormControl(1);
   widthElementos = new FormControl(100);
-  heightElementos = new FormControl(100);
 
   elementosArray = Array(this.numeroElementos.value).fill(0);
 
@@ -49,13 +48,6 @@ export class FlexboxComponent {
         console.log('value');
       })
     );
-
-    this.subscriptions.add(
-      this.heightElementos.valueChanges.subscribe(value => {
-        console.log('value');
-      })
-    );
-
   }
 
   onOptionChange(newValue: string, optionName: string): void {

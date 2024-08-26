@@ -3,14 +3,17 @@
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
- /* .mdc-text-field--focused .mdc-notched-outline__notch {
-  border-color: red !important;
-}
+:root {
+  --primary-color: #8fc1e1;
 
-.mdc-text-field--focused .mdc-notched-outline__trailing {
-  border-color: red !important;
-}
+  --secondary-color: #bfd2df;
 
-.mdc-text-field--focused .mdc-notched-outline__leading {
-  border-color: red !important;
-} */
+  --accent-color: #e74c3c;
+
+  --primary-color-bg: #F7F5FF;
+  --primary-color-bg500: #CCCCCC;
+
+  --color-bg-input: #f0efef;
+
+  --text-color: #333333;
+}

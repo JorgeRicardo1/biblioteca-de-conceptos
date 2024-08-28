@@ -4,22 +4,18 @@
   <div class="container">
 
     <div class="controler-items">
-
       <mat-form-field appearance="outline" class="control-item-container">
         <mat-label>Numero de elementos</mat-label>
         <input matInput type="number" [formControl]="numeroElementos">
       </mat-form-field>
 
-
       <mat-form-field appearance="outline" class="control-item-container">
         <mat-label>Width del elemento</mat-label>
         <input matInput type="number" [formControl]="widthElementos">
       </mat-form-field>
-
-
-
     </div>
 
+    <!-- Seccion de ejemplo donde se muestra el resultado  -->
     <div class="exhibition-section">
       <div class="flexbox-edit" [ngStyle]="{
         'flex-direction': flexDirectionOption,
@@ -40,9 +36,12 @@
       </div>
     </div>
 
+    <!-- Seccion de propiedades para el contenedor flex -->
     <div class="parameters-section">
-
-      <mat-accordion class="parameters-section-container" multi>
+      <div class="parameters-section-container">
+        <div class="title-parametes">Propiedades del contenedor</div>
+      <mat-accordion multi>
+        <!-- Parametros(propiedades) para el contenedor flex -->
         <mat-expansion-panel class="container-option-card">
           <mat-expansion-panel-header class="option-card-header">
             <mat-panel-title class="option-card-title">
@@ -57,7 +56,7 @@
             </mat-panel-title>
 
           </mat-expansion-panel-header>
-          <div>Define la dirección en la que se colocan los elementos hijos dentro de un contenedor flexbox. Puede tomar uno de estos valores</div>
+          <div class="description-option">Define la dirección en la que se colocan los elementos hijos dentro de un contenedor flexbox. Puede tomar uno de estos valores</div>
         </mat-expansion-panel>
 
         <mat-expansion-panel class="container-option-card">
@@ -74,7 +73,7 @@
               </mat-radio-group>
             </mat-panel-title>
           </mat-expansion-panel-header>
-          <div>Sirve para alinear los elementos hijos a lo largo del eje principal de un contenedor flex,permite controlar la distribución del espacio entre y alrededor de los elementos flexibles dentro del contenedor, facilitando así un diseño más dinámico y flexible.</div>
+          <div class="description-option">Sirve para alinear los elementos hijos a lo largo del eje principal de un contenedor flex,permite controlar la distribución del espacio entre y alrededor de los elementos flexibles dentro del contenedor, facilitando así un diseño más dinámico y flexible.</div>
         </mat-expansion-panel>
 
 
@@ -92,7 +91,7 @@
               </mat-radio-group>
             </mat-panel-title>
           </mat-expansion-panel-header>
-          <div>Sirve para alinear los elementos hijos a lo largo del eje transversal de un contenedor flex. permite controlar la alineación y distribución de los elementos flexibles a lo largo del eje transversal, proporcionando una manera efectiva de manejar el espacio vertical u horizontal entre los elementos.</div>
+          <div class="description-option">Sirve para alinear los elementos hijos a lo largo del eje transversal de un contenedor flex. permite controlar la alineación y distribución de los elementos flexibles a lo largo del eje transversal, proporcionando una manera efectiva de manejar el espacio vertical u horizontal entre los elementos.</div>
         </mat-expansion-panel>
 
 
@@ -109,7 +108,7 @@
               </mat-radio-group>
             </mat-panel-title>
           </mat-expansion-panel-header>
-          <div>Sirve para controlar cómo los elementos flexibles se envuelven en múltiples líneas dentro de un contenedor flex. Esta propiedad es útil cuando hay más elementos flexibles de los que el contenedor puede mostrar en una sola línea, permitiendo que los elementos se distribuyan en varias líneas o columnas según sea necesario</div>
+          <div class="description-option">Sirve para controlar cómo los elementos flexibles se envuelven en múltiples líneas dentro de un contenedor flex. Esta propiedad es útil cuando hay más elementos flexibles de los que el contenedor puede mostrar en una sola línea, permitiendo que los elementos se distribuyan en varias líneas o columnas según sea necesario</div>
         </mat-expansion-panel>
 
 
@@ -128,26 +127,107 @@
               </mat-radio-group>
             </mat-panel-title>
           </mat-expansion-panel-header>
-          <div>Sirve para alinear y distribuir el espacio entre las líneas de elementos flexibles a lo largo del eje transversal de un contenedor flex. Esta propiedad es relevante cuando hay múltiples líneas de elementos dentro del contenedor, lo cual ocurre cuando se utiliza flex-wrap con el valor wrap o wrap-reverse.</div>
+          <div class="description-option">Sirve para alinear y distribuir el espacio entre las líneas de elementos flexibles a lo largo del eje transversal de un contenedor flex. Esta propiedad es relevante cuando hay múltiples líneas de elementos dentro del contenedor, lo cual ocurre cuando se utiliza flex-wrap con el valor wrap o wrap-reverse.</div>
         </mat-expansion-panel>
 
       </mat-accordion>
+      </div>
 
-
-      <mat-accordion class="parameters-section-item" multi>
+      <div class="parameters-section-item">
+        <div class="title-parametes">Propieades del item</div>
+      <!--Paramatros para los items del container flex  -->
+      <mat-accordion  multi>
         <mat-expansion-panel class="container-option-card">
           <mat-expansion-panel-header class="option-card-header">
             <mat-panel-title class="option-card-title">
               <div class="option-title">flex-grow</div>
-              <mat-form-field appearance="outline" class="input-option-container">
+              <mat-form-field appearance="outline" class="input-option-container" >
                 <input class="input-option" matInput type="number">
               </mat-form-field>
             </mat-panel-title>
-
           </mat-expansion-panel-header>
+          <div class="description-option">Define cuánto puede crecer ese ítem en proporción al espacio disponible en el contenedor, en comparación con otros ítems. Su valor por defecto es 0, lo que significa que el ítem no crecerá más allá de su tamaño inicial. Si se establece un valor mayor a 0, el ítem crecerá en función del espacio sobrante: un valor de 1 indica que el ítem tomará una parte proporcional del espacio disponible, y valores superiores harán que el ítem crezca más en relación a los demás ítems.</div>
         </mat-expansion-panel>
 
+        <mat-expansion-panel class="container-option-card">
+          <mat-expansion-panel-header class="option-card-header">
+            <mat-panel-title class="option-card-title">
+              <div class="option-title">flex-shrink </div>
+              <mat-form-field appearance="outline" class="input-option-container" >
+                <input class="input-option" matInput type="number">
+              </mat-form-field>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div class="description-option">Controla la capacidad de un ítem dentro de un contenedor flex para reducir su tamaño cuando el espacio es limitado. Por defecto, tiene un valor de 1, lo que permite a los ítems encogerse si es necesario. Un valor de 0 evita que el ítem se reduzca, mientras que valores mayores permiten que el ítem se reduzca más en comparación con otros ítems. Esto ayuda a distribuir el espacio de manera eficiente cuando el contenedor es más pequeño que la suma de los tamaños iniciales de los ítems.</div>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel class="container-option-card">
+          <mat-expansion-panel-header class="option-card-header">
+            <mat-panel-title class="option-card-title">
+              <div class="option-title">flex-basis </div>
+              <mat-form-field appearance="outline" class="input-option-container" >
+                <input class="input-option" matInput type="number">
+              </mat-form-field>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div class="description-option">Define el tamaño inicial de un ítem dentro de un contenedor flex antes de distribuir el espacio restante. Por defecto, su valor es auto, lo que hace que el tamaño del ítem dependa de su contenido o de las propiedades width y height. Puedes especificar un tamaño fijo con unidades como px o %, lo que establece una base específica antes de que se apliquen las propiedades flex-grow y flex-shrink. Si se establece en 0, el tamaño inicial del ítem será nulo y dependerá completamente del comportamiento flexible para determinar su tamaño final.</div>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel class="container-option-card">
+          <mat-expansion-panel-header class="option-card-header">
+            <mat-panel-title class="option-card-title">
+              <div class="option-title">align-self</div>
+              <mat-radio-group class="radiosB-container" [(ngModel)]="alignContentOption"
+                (ngModelChange)="onOptionChange($event, 'alignContentOption')">
+                <mat-radio-button value="auto" (click)="$event.stopPropagation()">auto</mat-radio-button>
+                <mat-radio-button value="stretch" (click)="$event.stopPropagation()">stretch</mat-radio-button>
+                <mat-radio-button value="flex-start" (click)="$event.stopPropagation()">flex-start</mat-radio-button>
+                <mat-radio-button value="flex-end" (click)="$event.stopPropagation()">flex-end</mat-radio-button>
+                <mat-radio-button value="center" (click)="$event.stopPropagation()">center</mat-radio-button>
+                <mat-radio-button value="space-between" (click)="$event.stopPropagation()">space-between</mat-radio-button>
+              </mat-radio-group>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div class="description-option">Permite ajustar la alineación vertical de un ítem individual dentro de un contenedor flex, sobrescribiendo el comportamiento establecido por align-items alineando el ítem de manera diferente en el eje transversal. El valor por defecto es auto, lo que hace que el ítem siga la alineación definida por align-items. Esta propiedad es especialmente útil para alinear un ítem de manera distinta al resto en el mismo contenedor flex. </div>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel class="container-option-card">
+          <mat-expansion-panel-header class="option-card-header">
+            <mat-panel-title class="option-card-title">
+              <div class="option-title">order</div>
+              <mat-form-field appearance="outline" class="input-option-container" >
+                <input class="input-option" matInput type="number">
+              </mat-form-field>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div class="description-option">Permite controlar el orden visual de los ítems dentro de un contenedor flex, independientemente de su orden en el código HTML. Su valor por defecto es 0, pero al asignar números enteros, ya sean positivos o negativos, se puede cambiar la posición de los ítems: los valores más bajos se muestran primero, y los más altos después.</div>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel class="container-option-card">
+          <mat-expansion-panel-header class="option-card-header">
+            <mat-panel-title class="option-card-title">
+              <div class="option-title">Width</div>
+              <mat-form-field appearance="outline" class="input-option-container" >
+                <input class="input-option" matInput type="number">
+              </mat-form-field>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div class="description-option">Tamaño del item especifico</div>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel class="container-option-card">
+          <mat-expansion-panel-header class="option-card-header">
+            <mat-panel-title class="option-card-title">
+              <div class="option-title">Height</div>
+              <mat-form-field appearance="outline" class="input-option-container" >
+                <input class="input-option" matInput type="number">
+              </mat-form-field>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div class="description-option">Tamaño del item especifico</div>
+        </mat-expansion-panel>
       </mat-accordion>
+      </div>
     </div>
   </div>
 </section>

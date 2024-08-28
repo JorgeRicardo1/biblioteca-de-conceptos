@@ -14,6 +14,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   --primary-color-bg500: #CCCCCC;
 
   --color-bg-input: #f0efef;
+  --color-bg-info-text: #F7F7F7;
 
   --text-color: #333333;
 }

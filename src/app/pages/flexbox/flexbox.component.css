@@ -45,6 +45,21 @@
 
     .parameters-section{
       display: flex;
+      gap: 10px;
+      padding: 5px 0;
+
+      /* propiedad que afacta a la seccion container e item */
+      .container-option-card{
+        margin: 2px 0;
+      }
+      /* propiedad que afacta a la seccion container e item */
+      .title-parametes{
+        font-weight: bold;
+      }
+      /* propiedad que afacta a la seccion container e item */
+      .description-option{
+        background-color: var(--color-bg-info-text);
+      }
 
       .parameters-section-container{
         flex: 1;
@@ -55,13 +70,10 @@
 
         .input-option-container{
           width: 100%;
-
-          background-color: aqua;
+          padding: 5px 0;
 
           .input-option{
-            background-color: bisque;
             margin: 0;
-            height: 20%;
           }
 
         }
@@ -99,11 +111,10 @@
   display: none;
 }
 
-::ng-deep .mdc-text-field--no-label .mat-mdc-form-field-infix{
-  padding: 0 !important;
-
+::ng-deep .input-option-container > .mdc-text-field--no-label .mat-mdc-form-field-infix{
+  padding: 7px 0 0 0;
 }
 
-.mat-mdc-text-field-wrapper{
-  display: block;
+::ng-deep .input-option-container > .mat-mdc-text-field-wrapper {
+  height: 40px !important;
 }

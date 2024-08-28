@@ -17,7 +17,8 @@ import {MatExpansionModule} from '@angular/material/expansion';
   imports: [CommonModule, MatFormFieldModule,FormsModule, MatSelectModule,MatRadioModule,
     MatInputModule, ReactiveFormsModule, MatCheckboxModule, MatExpansionModule],
   templateUrl: './flexbox.component.html',
-  styleUrl: './flexbox.component.css'
+  styleUrl: './flexbox.component.css',
+  host : {  }
 })
 export class FlexboxComponent {
   flexDirectionOption = 'row';
@@ -27,6 +28,7 @@ export class FlexboxComponent {
   alignContentOption = 'stretch';
   numeroElementos =  new FormControl(1);
   widthElementos = new FormControl(100);
+
 
   elementosArray = Array(this.numeroElementos.value).fill(0);
 

@@ -8,9 +8,13 @@
   padding: 0 10px;
   background-color: var(--primary-color-bg);
 
+  .title-container{
+    cursor: pointer;
+  }
   .buttons {
     display: flex;
     flex-direction: column;
+    cursor: pointer;
 
     .button {
       height: 50px;

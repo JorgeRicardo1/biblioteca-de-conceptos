@@ -28,6 +28,7 @@
     .exhibition-section{
       height: 300px;
       position: sticky;
+      overflow: auto;
       border: 3px solid var(--primary-color-bg500);
 
       .flexbox-edit{
@@ -35,10 +36,16 @@
         gap: 10px;
         height: 100%;
 
-
         .elemento{
           background-color: var(--secondary-color);
+          cursor: pointer;
 
+        }
+
+        /* clase para mostrar un elemento seleccionado */
+        .selected {
+          background-color: var(--secondary-color-bg);
+          color: white;
         }
       }
     }

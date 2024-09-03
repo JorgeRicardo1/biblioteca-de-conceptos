@@ -10,14 +10,14 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { Item } from '../flexbox/interfaces/item-flex'
 import { IfStmt } from '@angular/compiler';
-
+import { FlexCodeOutputComponent } from "./flex-code-output/flex-code-output.component";
 
 
 @Component({
   selector: 'app-flexbox',
   standalone: true,
   imports: [CommonModule, MatFormFieldModule, FormsModule, MatSelectModule, MatRadioModule,
-    MatInputModule, ReactiveFormsModule, MatCheckboxModule, MatExpansionModule],
+    MatInputModule, ReactiveFormsModule, MatCheckboxModule, MatExpansionModule, FlexCodeOutputComponent],
   templateUrl: './flexbox.component.html',
   styleUrl: './flexbox.component.css',
   host: {}
@@ -42,6 +42,21 @@ export class FlexboxComponent {
   // controles de el flex exibidor
   numeroElementos = new FormControl(1);
   widthElementos = new FormControl(70);
+
+  //variables para generar el codigo
+  htmlCodeOutput = `ngOnDestroy() {
+    this.subscriptions.unsubscribe();
+  };`
+
+  cssCodeOutput = `.flex-container {
+      display: flex;
+      flex-direction: ${this.flexDirectionOption};
+      flex-wrap: ${this.flexWrapOption};
+      justify-content: ${this.alignContentOption};
+      align-items: ${this.alignItemsOption};
+      align-content: ${this.alignContentOption};
+    }
+  };`
 
 
 
@@ -133,10 +148,10 @@ export class FlexboxComponent {
 
     this.subscriptions.add(
       this.orderOption.valueChanges.subscribe(value => {
-        if(!value){ value = 0};
+        if (!value) { value = 0 };
         this.currentItem.order = value;
         this.elementosArray.forEach(element => {
-          if(element.id == this.currentItem.id){
+          if (element.id == this.currentItem.id) {
             element = this.currentItem;
           }
         })
@@ -173,7 +188,7 @@ export class FlexboxComponent {
   };
 
   getEstilos(elemento: any) {
-    if(this.flexDirectionOption == 'row' || this.flexDirectionOption == 'row-reverse'){
+    if (this.flexDirectionOption == 'row' || this.flexDirectionOption == 'row-reverse') {
       console.log('hey', this.widthElementos)
       return {
         'flex-grow': elemento.flexGrow,
@@ -184,7 +199,7 @@ export class FlexboxComponent {
         'width.px': this.widthElementos.value
       };
     }
-    else{
+    else {
       return {
         'flex-grow': elemento.flexGrow,
         'flex-shrink': elemento.flexShrink,

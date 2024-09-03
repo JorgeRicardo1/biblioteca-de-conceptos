@@ -1,0 +1,16 @@
+.container{
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  .code-container{
+    .title-typecode{
+      font-size: large;
+      font-weight: bold;
+      background-color: #BFD2DF ;
+      padding: 6px 2px;
+    }
+    .code-output-container{
+      background-color: var( --primary-color-bg);
+    }
+  }
+}

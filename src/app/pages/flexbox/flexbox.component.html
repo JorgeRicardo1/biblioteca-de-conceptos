@@ -269,5 +269,46 @@
         </mat-accordion>
       </div>
     </div>
+
+    <!-- seccion de codigoOutPut -->
+    <div class="code-section">
+      <div class="code-container">
+        <div class="title-typecode">Codigo Css</div>
+        <div class="code-output-container">
+          <pre><code class="language-css">.flex-container&#123;
+            display: flex;
+            flex-direction: {{ flexDirectionOption}};
+            flex-wrap: {{ flexWrapOption}};
+            justify-content: {{ justifyContentOption}};
+            align-items: {{ alignItemsOption}};
+            align-content: {{ alignContentOption }};
+            &#125;
+          </code></pre>
+          @for (elemento of elementosArray; track $index) {
+            <pre><code class="language-css">flex-items:nth-child({{ $index + 1}})&#123;
+              flex-grow: {{elemento.flexGrow}};
+              flex-shrink: {{elemento.flexShrink}};
+              flex-basis: {{elemento.flexBasis}};
+              align-self: {{elemento.alignSelf}};
+              order: {{elemento.order}};
+              &#125;
+            </code></pre>
+          }
+        </div>
+      </div>
+      <div class="code-container">
+        <div class="title-typecode">Codigo Html</div>
+        <div class="code-output-container">
+          <pre><code class="language-html">
+&lt;div class="flex-container"&gt;
+  @for (elemento of elementosArray; track $index) {
+    &lt;div class="flex-items"&gt;&lt;/div&gt;
+  }
+&lt;/div&gt;
+          </code></pre>
+        </div>
+      </div>
+    </div>
+
   </div>
 </section>

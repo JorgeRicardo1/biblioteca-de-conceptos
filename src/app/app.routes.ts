@@ -8,6 +8,10 @@ export const routes: Routes = [
     component : SidebarComponent,
     children : [
       {
+        path: '',
+        loadComponent: () => import('./pages/home/home.component').then(m => m.HomeComponent)
+      },
+      {
         path: 'home',
         loadComponent: () => import('./pages/home/home.component').then(m => m.HomeComponent)
       },

@@ -45,7 +45,6 @@
   .main-container {
     min-height: 100vh;
     max-height: 95vh;
-
     display: flex;
     flex-direction: column;
 
@@ -54,6 +53,11 @@
       background-color: var(--primary-color);
       padding: 10px;
       font-weight: bold;
+    }
+
+    .current-page{
+      padding-left: 10px;
+      padding-right: 10px;
     }
   }
 }

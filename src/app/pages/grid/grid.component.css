@@ -1,0 +1,103 @@
+.section-container {
+
+  .parameters-grid-container {
+    display: flex;
+    margin: 15px 0;
+    gap: 10px;
+    padding: 2px;
+
+    .controler-container {
+      background-color: var(--color-bg-input);
+    }
+  }
+
+  /* estilos para el grid exhibition */
+  .exhibition-section {
+    height: 430px;
+    overflow: auto;
+    border: 3px solid var(--primary-color-bg500);
+    background-color: aqua;
+    display: grid;
+    grid-template-rows: 1fr; /* Asegura que ocupe el 100% del espacio */
+
+    .grid-edit {
+      display: grid;
+      height: 100%;
+      padding: 5px;
+      gap: 10px;
+      grid-template-rows: repeat(2, 1fr);
+      grid-template-columns: repeat(3, 1fr);
+      background-color: #8A91C4;
+      box-sizing: border-box;
+
+
+      .element {
+        background-color: white;
+
+        outline: 1.5px dashed red;
+      }
+    }
+
+
+  }
+
+  .parameters-section {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 5px 0;
+
+    /* propiedad que afacta a la seccion container e item */
+    .container-option-card {
+      margin: 2px 0;
+    }
+
+    /* propiedad que afacta a la seccion container e item */
+    .title-parametes {
+      font-weight: bold;
+    }
+
+    /* propiedad que afacta a la seccion container e item */
+    .description-option {
+      background-color: var(--color-bg-info-text);
+    }
+
+    .parameters-section-container {
+      flex: 1;
+    }
+
+    .parameters-section-item{
+      flex: 1;
+    }
+  }
+}
+
+/* estilos para las cards de las opciones del flex */
+.container-option-card{
+  padding: 8px 0;
+  .option-card-header{
+    height: auto;
+    .option-card-title{
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+
+
+      .option-title{
+        display: block;
+        font-weight: bolder;
+        font-size: large;
+      }
+
+      .radiosB-container{
+        display: block;
+      }
+    }
+  }
+}
+
+
+/* Para quitar el padding que tiene abajo el matInput */
+::ng-deep .mat-mdc-form-field-subscript-wrapper {
+  display: none;
+}

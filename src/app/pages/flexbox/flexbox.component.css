@@ -3,7 +3,6 @@
   .container{
     display: flex;
     flex-direction: column;
-    margin-left: 10px;
 
     .controler-items{
       display: flex;
@@ -87,7 +86,7 @@
         .title-typecode{
           font-size: large;
           font-weight: bold;
-          background-color: #BFD2DF ;
+          background-color: var(--secondary-color-bg500) ;
           padding: 6px 2px;
         }
         .code-output-container{

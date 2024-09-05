@@ -24,9 +24,6 @@
       display: grid;
       height: 100%;
       padding: 5px;
-      gap: 10px;
-      grid-template-rows: repeat(2, 1fr);
-      grid-template-columns: repeat(3, 1fr);
       background-color: #8A91C4;
       box-sizing: border-box;
 

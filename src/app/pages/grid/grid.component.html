@@ -2,30 +2,32 @@
 
   <div class="parameters-grid-container">
 
-    <mat-form-field class="controler-container" appearance="outline">
-      <mat-label>Número de Filas</mat-label>
-      <input matInput type="number">
-    </mat-form-field>
+    <div class="parameters-grid-container">
+      <mat-form-field class="controler-container" appearance="outline">
+        <mat-label>Número de Filas</mat-label>
+        <input matInput [formControl]="rows" type="number">
+      </mat-form-field>
 
-    <mat-form-field class="controler-container" appearance="outline">
-      <mat-label>Número de columnas</mat-label>
-      <input matInput type="number">
-    </mat-form-field>
+      <mat-form-field class="controler-container" appearance="outline">
+        <mat-label>Número de columnas</mat-label>
+        <input matInput [formControl]="columns" type="number">
+      </mat-form-field>
 
-    <mat-form-field class="controler-container" appearance="outline">
-      <mat-label>Row gap</mat-label>
-      <input matInput type="number">
-    </mat-form-field>
+      <mat-form-field class="controler-container" appearance="outline">
+        <mat-label>Row gap</mat-label>
+        <input matInput [formControl]="rowGap" type="number">
+      </mat-form-field>
 
-    <mat-form-field class="controler-container" appearance="outline">
-      <mat-label>Column gap</mat-label>
-      <input matInput type="number">
-    </mat-form-field>
+      <mat-form-field class="controler-container" appearance="outline">
+        <mat-label>Column gap</mat-label>
+        <input matInput [formControl]="columnGap" type="number">
+      </mat-form-field>
+    </div>
   </div>
 
   <!-- seccion de excibicion del grid -->
    <div class="exhibition-section">
-    <div class="grid-edit">
+    <div class="grid-edit" [ngStyle]="getEstilos()">
       <div class="element">
         1
       </div>

@@ -28,24 +28,9 @@
   <!-- seccion de excibicion del grid -->
    <div class="exhibition-section">
     <div class="grid-edit" [ngStyle]="getEstilos()">
-      <div class="element">
-        1
-      </div>
-      <div class="element">
-        1
-      </div>
-      <div class="element">
-        1
-      </div>
-      <div class="element">
-        1
-      </div>
-      <div class="element">
-        1
-      </div>
-      <div class="element">
-        1
-      </div>
+     @for(element of controlGridList; track element){
+      <div class="element-control"> {{ element.id }}</div>
+     }
     </div>
    </div>
 

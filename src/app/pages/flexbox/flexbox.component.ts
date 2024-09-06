@@ -189,7 +189,6 @@ export class FlexboxComponent {
 
   getEstilos(elemento: any) {
     if (this.flexDirectionOption == 'row' || this.flexDirectionOption == 'row-reverse') {
-      console.log('hey', this.widthElementos)
       return {
         'flex-grow': elemento.flexGrow,
         'flex-shrink': elemento.flexShrink,

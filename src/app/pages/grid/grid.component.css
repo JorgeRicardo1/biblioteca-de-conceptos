@@ -28,11 +28,15 @@
       box-sizing: border-box;
 
 
-      .element {
+      .element-control {
         background-color: white;
-
         outline: 1.5px dashed red;
       }
+
+      .element-control:hover{
+        background-color: #c7c7c7;
+      }
+
     }
 
 

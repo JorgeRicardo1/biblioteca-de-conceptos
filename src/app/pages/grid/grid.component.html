@@ -27,9 +27,12 @@
 
   <!-- seccion de excibicion del grid -->
    <div class="exhibition-section">
-    <div class="grid-edit" [ngStyle]="getEstilos()">
+    <div class="grid-edit" [ngStyle]="getGridStyles()">
      @for(element of controlGridList; track element){
-      <div class="element-control"> {{ element.id }}</div>
+      <div class="element-control" (click)="obtenerPosicionGrid(element.id)" #elementControl>
+         {{ element.id }}
+         <div class="element-control-adding"><mat-icon>add_circle</mat-icon></div>
+      </div>
      }
     </div>
    </div>

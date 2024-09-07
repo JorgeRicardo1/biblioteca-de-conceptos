@@ -18,7 +18,8 @@
     border: 3px solid var(--primary-color-bg500);
     background-color: aqua;
     display: grid;
-    grid-template-rows: 1fr; /* Asegura que ocupe el 100% del espacio */
+    grid-template-rows: 1fr;
+    /* Asegura que ocupe el 100% del espacio */
 
     .grid-edit {
       display: grid;
@@ -30,11 +31,29 @@
 
       .element-control {
         background-color: white;
-        outline: 1.5px dashed red;
+        outline: 1.5px dashed var(--primary-color);
+        position: relative;
+
+        .element-control-adding {
+          display: none;
+        }
+
       }
 
-      .element-control:hover{
-        background-color: #c7c7c7;
+      .element-control:hover {
+        background-color: #e0e0e0;
+        opacity: 1;
+
+        .element-control-adding {
+          height: 100%;
+          width: 100%;
+          display: grid;
+          justify-items: center;
+          align-items: center;
+          position: absolute;
+          top: 0;
+          color: var(--primary-color);
+        }
       }
 
     }
@@ -67,30 +86,32 @@
       flex: 1;
     }
 
-    .parameters-section-item{
+    .parameters-section-item {
       flex: 1;
     }
   }
 }
 
 /* estilos para las cards de las opciones del flex */
-.container-option-card{
+.container-option-card {
   padding: 8px 0;
-  .option-card-header{
+
+  .option-card-header {
     height: auto;
-    .option-card-title{
+
+    .option-card-title {
       display: flex;
       flex-direction: column;
       align-items: flex-start;
 
 
-      .option-title{
+      .option-title {
         display: block;
         font-weight: bolder;
         font-size: large;
       }
 
-      .radiosB-container{
+      .radiosB-container {
         display: block;
       }
     }

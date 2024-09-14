@@ -26,59 +26,62 @@
   </div>
 
   <!-- seccion de excibicion del grid -->
-   <div class="exhibition-section">
+  <div class="exhibition-section">
     <div class="grid-edit" [ngStyle]="getGridStyles()">
-     @for(element of controlGridList; track element){
+      @for(element of controlGridList; track element){
       <div class="element-control" (click)="obtenerPosicionGrid(element.id)" #elementControl>
-         {{ element.id }}
-         <div class="element-control-adding"><mat-icon>add_circle</mat-icon></div>
+        {{ element.id }}
+        <div class="element-control-adding"><mat-icon>add_circle</mat-icon></div>
       </div>
-     }
+      }
     </div>
-   </div>
-
-   <!-- seccion de parametros para el grid y sus elementos -->
-    <div class="parameters-section">
-
-      <div class="parameters-section-container">
-        <div class="title-parametes">Propiedades del contenedor</div>
-        <mat-accordion multi>
-
-          <mat-expansion-panel class="container-option-card">
-            <mat-expansion-panel-header class="option-card-header">
-              <mat-panel-title class="option-card-title">
-                <div class="option-title">justify-items</div>
-              </mat-panel-title>
-            </mat-expansion-panel-header>
-            <div>contenido</div>
-          </mat-expansion-panel>
-
-          <mat-expansion-panel class="container-option-card">
-            <mat-expansion-panel-header class="option-card-header">
-              <mat-panel-title class="option-card-title">
-                <div class="option-title">aling-items</div>
-              </mat-panel-title>
-            </mat-expansion-panel-header>
-            <div>contenido</div>
-          </mat-expansion-panel>
-        </mat-accordion>
-      </div>
-
-      <div class="parameters-section-item">
-        <div class="title-parametes">Propiedades del item</div>
-        <mat-accordion multi>
-
-          <mat-expansion-panel class="container-option-card">
-            <mat-expansion-panel-header class="option-card-header">
-              <mat-panel-title class="option-card-title">
-                <div class="option-title">Row/Column Start</div>
-              </mat-panel-title>
-            </mat-expansion-panel-header>
-            <div>contenido</div>
-          </mat-expansion-panel>
-
-
-        </mat-accordion>
-      </div>
+    <div class="grid-interactive" [ngStyle]="getGridStyles()">
+      <div class="element-added">hey</div>
     </div>
+  </div>
+
+  <!-- seccion de parametros para el grid y sus elementos -->
+  <div class="parameters-section">
+
+    <div class="parameters-section-container">
+      <div class="title-parametes">Propiedades del contenedor</div>
+      <mat-accordion multi>
+
+        <mat-expansion-panel class="container-option-card">
+          <mat-expansion-panel-header class="option-card-header">
+            <mat-panel-title class="option-card-title">
+              <div class="option-title">justify-items</div>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div>contenido</div>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel class="container-option-card">
+          <mat-expansion-panel-header class="option-card-header">
+            <mat-panel-title class="option-card-title">
+              <div class="option-title">aling-items</div>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div>contenido</div>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+
+    <div class="parameters-section-item">
+      <div class="title-parametes">Propiedades del item</div>
+      <mat-accordion multi>
+
+        <mat-expansion-panel class="container-option-card">
+          <mat-expansion-panel-header class="option-card-header">
+            <mat-panel-title class="option-card-title">
+              <div class="option-title">Row/Column Start</div>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div>contenido</div>
+        </mat-expansion-panel>
+
+
+      </mat-accordion>
+    </div>
+  </div>
 </section>

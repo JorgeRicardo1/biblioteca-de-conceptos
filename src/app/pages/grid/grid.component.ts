@@ -86,23 +86,44 @@ export class GridComponent {
     }
   }
 
+  // obtenerPosicionGrid(index: number) {
+  //   const element = this.elements.toArray()[index];
+  //   if (element) {
+  //     const computedStyle = window.getComputedStyle(element.nativeElement);
+  //     const gridColumnStart = computedStyle.getPropertyValue('grid-column-start');
+  //     const gridRowStart = computedStyle.getPropertyValue('grid-row-start');
+  //     console.log(`Posición del elemento: Columna: ${gridColumnStart}, Fila: ${gridRowStart}`);
+  //   }
+  // }
+
   obtenerPosicionGrid(index: number) {
-    const element = this.elements.toArray()[index];
+    const element = this.controlGridList.find(el => el.id === index);
+
+
     if (element) {
-      const computedStyle = window.getComputedStyle(element.nativeElement);
-      const gridColumnStart = computedStyle.getPropertyValue('grid-column-start');
-      const gridRowStart = computedStyle.getPropertyValue('grid-row-start');
-      console.log(`Posición del elemento: Columna: ${gridColumnStart}, Fila: ${gridRowStart}`);
+
+      console.log(`${element.column} + ${element.row}`);
     }
   }
 
   createControlGrid() {
     if (this.rows.value && this.columns.value) {
+      let columIndex = 1;
+      let rowIndex = 1;
       for (let i = 1; i <= this.rows.value * this.columns.value; i++) {
         this.controlGridList.push({
           id: i,
-          index: i
+          index: i,
+          row: rowIndex,
+          column: columIndex
         })
+
+        columIndex += 1;
+
+        if(columIndex > this.columns.value){
+          columIndex = 1;
+          rowIndex += 1;
+        }
       }
     }
   }

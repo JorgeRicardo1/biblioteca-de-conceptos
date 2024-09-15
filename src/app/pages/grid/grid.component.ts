@@ -7,6 +7,7 @@ import { debounceTime, distinctUntilChanged, Subscription } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { ControlGrid } from './interfaces/controlGrid';
 import { MatIconModule } from '@angular/material/icon';
+import { itemGrid } from './interfaces/itemGrid';
 
 @Component({
   selector: 'app-grid',
@@ -19,6 +20,7 @@ import { MatIconModule } from '@angular/material/icon';
 export class GridComponent {
 
   controlGridList: ControlGrid[] = [];
+  addedElementsList: itemGrid[] = [];
 
   @ViewChildren('elementControl') elements!: QueryList<ElementRef>;
 
@@ -96,13 +98,16 @@ export class GridComponent {
   //   }
   // }
 
-  obtenerPosicionGrid(index: number) {
+  createNewElement(index: number) {
     const element = this.controlGridList.find(el => el.id === index);
-
-
     if (element) {
-
-      console.log(`${element.column} + ${element.row}`);
+      this.addedElementsList.push({
+        color:  `rgba(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 80)} , ${Math.floor(Math.random() * 256)}, 0.5)`,
+        column : element.column,
+        row : element.row,
+        id : this.addedElementsList.length + 1
+      });
+      console.log(this.addedElementsList);
     }
   }
 
@@ -113,7 +118,6 @@ export class GridComponent {
       for (let i = 1; i <= this.rows.value * this.columns.value; i++) {
         this.controlGridList.push({
           id: i,
-          index: i,
           row: rowIndex,
           column: columIndex
         })

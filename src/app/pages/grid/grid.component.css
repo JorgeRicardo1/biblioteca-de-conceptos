@@ -67,10 +67,43 @@
       box-sizing: border-box;
 
       .element-added{
-        grid-row: 3 ;
-        grid-column: 2 / span 2;
-        background-color: red;
+        opacity: 0.6;
         z-index: 6;
+        position: relative;
+
+
+        .element-added-close{
+          position: absolute;
+          cursor: pointer;
+        }
+
+        .identify-text{
+          position: absolute;
+          top: 0;
+          right: 3px;
+          color: white;
+        }
+
+        .expand-icon{
+          position: absolute;
+          bottom: 0;
+          right: 3px;
+          color: white;
+          cursor: pointer;
+        }
+
+        .movement-icon{
+          position: absolute;
+          top: 50%;
+          right: 50%;
+          transform: translate(25%, -50%);
+          cursor: grab;
+          color: #e0e0e0;
+        }
+
+        .movement-icon:active{
+          cursor: grabbing;
+        }
       }
     }
   }

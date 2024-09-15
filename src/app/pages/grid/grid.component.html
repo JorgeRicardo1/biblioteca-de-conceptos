@@ -29,14 +29,24 @@
   <div class="exhibition-section">
     <div class="grid-edit" [ngStyle]="getGridStyles()">
       @for(element of controlGridList; track element){
-      <div class="element-control" (click)="obtenerPosicionGrid(element.id)" #elementControl>
-        {{ element.id }}
+      <div class="element-control" (click)="createNewElement(element.id)" #elementControl>
         <div class="element-control-adding"><mat-icon>add_circle</mat-icon></div>
       </div>
       }
     </div>
     <div class="grid-interactive" [ngStyle]="getGridStyles()">
-      <div class="element-added">hey</div>
+      @for(elementAdded of addedElementsList; track elementAdded){
+      <div class="element-added" [ngStyle]="{
+        'grid-row': elementAdded.row,
+        'grid-column': elementAdded.column,
+        'background-color': elementAdded.color
+      }">
+        <div class="element-added-close"><mat-icon>close</mat-icon></div>
+        <div class="identify-text">div{{ elementAdded.id }}</div>
+        <div class="expand-icon"><mat-icon>aspect_ratio</mat-icon></div>
+        <div class="movement-icon"><mat-icon>pan_tool</mat-icon></div>
+      </div>
+      }
     </div>
   </div>
 

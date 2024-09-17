@@ -33,8 +33,8 @@ export class GridComponent {
 
   subscriptions = new Subscription();
 
-  previusPosition = { x: 0, y:0};
   dragPosition = signal({ x: 0, y: 0 });
+  style: any = {};
 
   constructor() {
     this.subscriptions.add(
@@ -94,9 +94,6 @@ export class GridComponent {
 
     const gridRect = gridElement.getBoundingClientRect();
     const elementRect = event.source.element.nativeElement.getBoundingClientRect();
-
-
-
     if (!this.columns.value || !this.rows.value) {
       return;
     }
@@ -110,21 +107,13 @@ export class GridComponent {
     const newColumn = Math.round((elementRect.left - gridRect.left) / cellWidth) + 1;
     const newRow = Math.round((elementRect.top - gridRect.top) / cellHeight) + 1;
 
-    // Asegurarse de que el elemento no se salga del grid
     item.column = Math.max(1, Math.min(newColumn, this.columns.value));
     item.row = Math.max(1, Math.min(newRow, this.rows.value));
 
-    // Forzar actualización del grid
 
+    // Forzar actualización del grid
     event.source.element.nativeElement.style.transform = '';
 
-    this.previusPosition.x = elementRect.left;
-    this.previusPosition.y = elementRect.top;
-
-    console.log('previusPosition x',  this.previusPosition.x  );
-    console.log('previusPosition y', this.previusPosition.y);
-
-    console.log(this.addedElementsList)
   }
 
 
@@ -135,9 +124,12 @@ export class GridComponent {
         x: 0,
         y: 0
       };
-      console.log('Actualizando a:', newPosition);
+      console.log(item.columnSpan);
+      console.log(item.rowSpan);
       return newPosition;
     });
+
+    console.log(item)
   }
 
   cdkDragMoved(event: CdkDragMove, item: itemGrid) {
@@ -152,7 +144,9 @@ export class GridComponent {
         color: `rgba(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 80)} , ${Math.floor(Math.random() * 256)}, 0.5)`,
         column: element.column,
         row: element.row,
-        id: this.addedElementsList.length + 1
+        id: this.addedElementsList.length + 1,
+        rowSpan: 1,
+        columnSpan: 3
       });
     }
   }

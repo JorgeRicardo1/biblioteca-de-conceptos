@@ -40,14 +40,14 @@
         (cdkDragStarted)="onDragStarted($event, elementAdded)" (cdkDragMoved)="cdkDragMoved($event, elementAdded)"
         [cdkDragFreeDragPosition]="dragPosition()"
         [ngStyle]="{
-          'grid-row': elementAdded.row,
-          'grid-column': elementAdded.column,
+          'grid-row': elementAdded.row + ' / span ' + elementAdded.rowSpan,
+          'grid-column': elementAdded.column + ' / span ' + elementAdded.columnSpan,
           'background-color': elementAdded.color
         }">
         <div class="element-added-close"><mat-icon>close</mat-icon></div>
         <div class="identify-text">div{{ elementAdded.id }}</div>
         <div class="expand-icon"><mat-icon>aspect_ratio</mat-icon></div>
-        <div class="movement-icon"><mat-icon>pan_tool</mat-icon></div>
+        <div class="movement-icon" cdkDragHandle><mat-icon>pan_tool</mat-icon></div>
       </div>
       }
     </div>

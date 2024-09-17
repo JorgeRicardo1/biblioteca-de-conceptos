@@ -3,4 +3,6 @@ export interface itemGrid {
   color : string
   row : number;
   column : number;
+  rowSpan : number;
+  columnSpan : number;
 }

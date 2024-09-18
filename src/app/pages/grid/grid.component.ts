@@ -152,6 +152,13 @@ export class GridComponent {
     this.resizing = false;
   }
 
+  removeElement( itemSended : itemGrid){
+    const index = this.addedElementsList.findIndex(item => item.id === itemSended.id);
+    if (index !== -1) {
+      this.addedElementsList.splice(index, 1);
+    }
+  }
+
   onDragEnded(event: CdkDragEnd, item: itemGrid) {
     const gridElement = document.querySelector('.grid-interactive') as HTMLElement;
 

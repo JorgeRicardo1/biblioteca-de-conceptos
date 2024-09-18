@@ -44,7 +44,7 @@
           'grid-column': elementAdded.column + ' / span ' + elementAdded.columnSpan,
           'background-color': elementAdded.color
         }">
-        <div class="element-added-close"><mat-icon>close</mat-icon></div>
+        <div class="element-added-close" (click)="removeElement(elementAdded)"><mat-icon>close</mat-icon></div>
         <div class="identify-text">div{{ elementAdded.id }}</div>
         <div class="expand-icon" (mousedown)="startResize($event, elementAdded)"><mat-icon>aspect_ratio</mat-icon></div>
         <div class="movement-icon" cdkDragHandle><mat-icon>pan_tool</mat-icon></div>

@@ -58,7 +58,7 @@
       }
     }
 
-    .grid-interactive{
+    .grid-interactive {
       position: absolute;
       display: grid;
       padding: 5px;
@@ -66,25 +66,26 @@
       width: 100%;
       box-sizing: border-box;
 
-      .element-added{
+      .element-added {
         opacity: 0.6;
         z-index: 6;
         position: relative;
+        width: 50px;
+        height: 50px;
 
-
-        .element-added-close{
+        .element-added-close {
           position: absolute;
           cursor: pointer;
         }
 
-        .identify-text{
+        .identify-text {
           position: absolute;
           top: 0;
           right: 3px;
           color: white;
         }
 
-        .expand-icon{
+        .expand-icon {
           position: absolute;
           bottom: 0;
           right: 3px;
@@ -92,7 +93,7 @@
           cursor: pointer;
         }
 
-        .movement-icon{
+        .movement-icon {
           position: absolute;
           top: 50%;
           right: 50%;
@@ -101,7 +102,7 @@
           color: #e0e0e0;
         }
 
-        .movement-icon:active{
+        .movement-icon:active {
           cursor: grabbing;
         }
       }

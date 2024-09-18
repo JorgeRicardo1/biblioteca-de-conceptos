@@ -34,12 +34,12 @@
       </div>
       }
     </div>
-    <div class="grid-interactive" [ngStyle]="getGridStyles()">
+    <div class="grid-interactive" [ngStyle]="getGridStylesInteractive()">
       @for(elementAdded of addedElementsList; track elementAdded){
-      <div class="element-added" cdkDrag (cdkDragEnded)="onDragEnded($event, elementAdded)" cdkDragBoundary=".grid-interactive"
-        (cdkDragStarted)="onDragStarted($event, elementAdded)" (cdkDragMoved)="cdkDragMoved($event, elementAdded)"
-        [cdkDragFreeDragPosition]="dragPosition()" (click)="itemSelected(elementAdded)" [ngClass]="{'selected': elementAdded.selected}"
-        [ngStyle]="{
+      <div class="element-added" cdkDrag (cdkDragEnded)="onDragEnded($event, elementAdded)"
+        cdkDragBoundary=".grid-interactive" (cdkDragStarted)="onDragStarted($event, elementAdded)"
+        (cdkDragMoved)="cdkDragMoved($event, elementAdded)" [cdkDragFreeDragPosition]="dragPosition()"
+        (click)="itemSelected(elementAdded)" [ngClass]="{'selected': elementAdded.selected}" [ngStyle]="{
           'grid-row': elementAdded.row + ' / span ' + elementAdded.rowSpan,
           'grid-column': elementAdded.column + ' / span ' + elementAdded.columnSpan,
           'background-color': elementAdded.color
@@ -64,19 +64,94 @@
           <mat-expansion-panel-header class="option-card-header">
             <mat-panel-title class="option-card-title">
               <div class="option-title">justify-items</div>
+              <mat-radio-group class=".radiosB-container" [(ngModel)]="justifyItemsOption">
+                <mat-radio-button value="stretch" (click)="$event.stopPropagation()">stretch</mat-radio-button>
+                <mat-radio-button value="start" (click)="$event.stopPropagation()">start</mat-radio-button>
+                <mat-radio-button value="end" (click)="$event.stopPropagation()">end</mat-radio-button>
+                <mat-radio-button value="center" (click)="$event.stopPropagation()">center</mat-radio-button>
+              </mat-radio-group>
             </mat-panel-title>
           </mat-expansion-panel-header>
-          <div>contenido</div>
+          <div class="description-option">
+            Controla la alineación vertical de los elementos dentro de sus celdas. Puede
+            tener varios valores: start (alineación en la parte superior), center (centrado vertical), end (parte
+            inferior) y stretch (el valor por defecto, que estira los elementos para ocupar todo el espacio vertical
+            disponible). Esto permite ajustar cómo se distribuyen los elementos a lo largo del eje vertical en cada
+            celda de la cuadrícula.
+          </div>
         </mat-expansion-panel>
 
         <mat-expansion-panel class="container-option-card">
           <mat-expansion-panel-header class="option-card-header">
             <mat-panel-title class="option-card-title">
               <div class="option-title">aling-items</div>
+              <mat-radio-group class=".radiosB-container" [(ngModel)]="alignItemsOption">
+                <mat-radio-button value="stretch" (click)="$event.stopPropagation()">stretch</mat-radio-button>
+                <mat-radio-button value="start" (click)="$event.stopPropagation()">start</mat-radio-button>
+                <mat-radio-button value="end" (click)="$event.stopPropagation()">end</mat-radio-button>
+                <mat-radio-button value="center" (click)="$event.stopPropagation()">center</mat-radio-button>
+              </mat-radio-group>
             </mat-panel-title>
           </mat-expansion-panel-header>
-          <div>contenido</div>
+          <div class="description-option">
+            Controla la alineación horizontal de los elementos dentro de sus celdas. Sus valores incluyen: start
+            (alineación a la izquierda), center (centrado horizontal), end (alineación a la derecha) y stretch (valor
+            por defecto, que estira los elementos para llenar todo el espacio horizontal disponible). Esto define cómo
+            se distribuyen los elementos a lo largo del eje horizontal dentro de cada celda de la cuadrícula.
+          </div>
         </mat-expansion-panel>
+
+        <mat-expansion-panel class="container-option-card">
+          <mat-expansion-panel-header class="option-card-header">
+            <mat-panel-title class="option-card-title">
+              <div class="option-title">align-content</div>
+              <mat-radio-group class=".radiosB-container" [(ngModel)]="alignContentOption">
+                <mat-radio-button value="start" (click)="$event.stopPropagation()">start</mat-radio-button>
+                <mat-radio-button value="end" (click)="$event.stopPropagation()">end</mat-radio-button>
+                <mat-radio-button value="center" (click)="$event.stopPropagation()">center</mat-radio-button>
+                <mat-radio-button value="space-between"
+                  (click)="$event.stopPropagation()">space-between</mat-radio-button>
+                <mat-radio-button value="space-around"
+                  (click)="$event.stopPropagation()">space-around</mat-radio-button>
+              </mat-radio-group>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div class="description-option">
+            Define cómo se distribuye el espacio vertical entre las filas cuando todo el grid es mas pequeño que el
+            espacio para el contenedor del grid. Solo afecta si tienes varias filas y hay espacio extra. Los valores
+            comunes son: start (las
+            filas se agrupan en la parte superior), center (las filas se centran verticalmente), end (se agrupan en la
+            parte inferior), space-between (distribuye el espacio de manera uniforme entre las filas), space-around
+            (agrega espacio alrededor de las filas), y stretch (el valor por defecto, que expande las filas para llenar
+            el espacio).
+          </div>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel class="container-option-card">
+          <mat-expansion-panel-header class="option-card-header">
+            <mat-panel-title class="option-card-title">
+              <div class="option-title">justify-content</div>
+              <mat-radio-group class=".radiosB-container" [(ngModel)]=" justifyContentOption">
+                <mat-radio-button value="start" (click)="$event.stopPropagation()">start</mat-radio-button>
+                <mat-radio-button value="end" (click)="$event.stopPropagation()">end</mat-radio-button>
+                <mat-radio-button value="center" (click)="$event.stopPropagation()">center</mat-radio-button>
+                <mat-radio-button value="space-between"
+                  (click)="$event.stopPropagation()">space-between</mat-radio-button>
+                <mat-radio-button value="space-around"
+                  (click)="$event.stopPropagation()">space-around</mat-radio-button>
+              </mat-radio-group>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div class="description-option">
+            Controla cómo se distribuye el espacio horizontal entre las columnas cuando hay espacio sobrante en el
+            contenedor. Solo tiene efecto si el contenido no ocupa todo el ancho. Los valores más comunes son: start
+            (las columnas se alinean a la izquierda), center (se centran horizontalmente), end (se alinean a la
+            derecha), space-between (distribuye el espacio uniformemente entre las columnas), space-around (agrega
+            espacio alrededor de cada columna), y stretch (expande las columnas para ocupar todo el espacio horizontal
+            disponible).
+          </div>
+        </mat-expansion-panel>
+
       </mat-accordion>
     </div>
 
@@ -90,7 +165,7 @@
               <div class="option-title">Row/Column Start</div>
             </mat-panel-title>
           </mat-expansion-panel-header>
-          <div>contenido</div>
+          <div class="description-option">contenido</div>
         </mat-expansion-panel>
 
 

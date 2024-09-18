@@ -9,12 +9,13 @@ import { ControlGrid } from './interfaces/controlGrid';
 import { MatIconModule } from '@angular/material/icon';
 import { itemGrid } from './interfaces/itemGrid';
 import { CdkDragEnd, CdkDragMove, CdkDragStart, DragDropModule, DragRef, Point } from '@angular/cdk/drag-drop';
+import { MatRadioModule } from '@angular/material/radio';
 
 @Component({
   selector: 'app-grid',
   standalone: true,
   imports: [MatFormFieldModule, MatInputModule, MatExpansionModule, ReactiveFormsModule, FormsModule,
-    CommonModule, MatIconModule, DragDropModule],
+    CommonModule, MatIconModule, DragDropModule, MatRadioModule],
   templateUrl: './grid.component.html',
   styleUrl: './grid.component.css'
 })
@@ -46,11 +47,17 @@ export class GridComponent {
     selected: false
   }
 
-  private resizing = false;
-  private startX = 0;
-  private startY = 0;
-  private originalWidth = 0;
-  private originalHeight = 0;
+  resizing = false;
+  startX = 0;
+  startY = 0;
+  originalWidth = 0;
+  originalHeight = 0;
+
+  //propiedades del contenedor grid
+  justifyItemsOption = "stretch";
+  alignItemsOption = "stretch";
+  alignContentOption = "start";
+  justifyContentOption = "start";
 
   constructor() {
     this.subscriptions.add(
@@ -101,7 +108,21 @@ export class GridComponent {
       'grid-template-rows': `repeat(${this.rows.value}, 1fr)`,
       'grid-template-columns': `repeat(${this.columns.value}, 1fr)`,
       'row-gap': `${this.rowGap.value}px`,
-      'column-gap': `${this.columnGap.value}px`
+      'column-gap': `${this.columnGap.value}px`,
+
+    }
+  }
+
+  getGridStylesInteractive() {
+    return {
+      'grid-template-rows': `repeat(${this.rows.value}, 1fr)`,
+      'grid-template-columns': `repeat(${this.columns.value}, 1fr)`,
+      'row-gap': `${this.rowGap.value}px`,
+      'column-gap': `${this.columnGap.value}px`,
+      'justify-items' : this.justifyItemsOption,
+      'align-items': this.alignItemsOption,
+      'justify-content': this.justifyContentOption,
+      'align-content': this.alignContentOption
     }
   }
 
@@ -113,6 +134,7 @@ export class GridComponent {
     this.currentItem.selected = true;
   }
 
+  //funcion que se inicia para alargar o hacer mas pequeño un item dentro del grid
   startResize(event: MouseEvent, item: itemGrid): void {
     this.resizing = true;
     this.currentItem = item;
@@ -135,8 +157,8 @@ export class GridComponent {
     const gridElement = document.querySelector('.grid-interactive') as HTMLElement;
     if (!gridElement || !this.columns.value || !this.rows.value) return;
 
-    const gridRect = gridElement.getBoundingClientRect();
-    const cellWidth = gridRect.width / this.columns.value;
+    const gridRect = gridElement.getBoundingClientRect(); //obtenemos el tamaño de el grid
+    const cellWidth = gridRect.width / this.columns.value; // tamaño de cada cuadricula
     const cellHeight = gridRect.height / this.rows.value;
 
     // Calcular nuevas dimensiones en función del arrastre
@@ -152,7 +174,7 @@ export class GridComponent {
     this.resizing = false;
   }
 
-  removeElement( itemSended : itemGrid){
+  removeElement(itemSended: itemGrid) {
     const index = this.addedElementsList.findIndex(item => item.id === itemSended.id);
     if (index !== -1) {
       this.addedElementsList.splice(index, 1);

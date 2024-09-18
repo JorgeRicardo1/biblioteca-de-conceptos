@@ -1,4 +1,4 @@
-import { Component, ElementRef, QueryList, signal, ViewChildren } from '@angular/core';
+import { Component, ElementRef, HostListener, QueryList, signal, ViewChildren } from '@angular/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatExpansionModule } from '@angular/material/expansion';
@@ -35,6 +35,22 @@ export class GridComponent {
 
   dragPosition = signal({ x: 0, y: 0 });
   style: any = {};
+
+  currentItem: itemGrid = {
+    id: 0,
+    color: 'red',
+    row: 0,
+    column: 0,
+    rowSpan: 0,
+    columnSpan: 0,
+    selected: false
+  }
+
+  private resizing = false;
+  private startX = 0;
+  private startY = 0;
+  private originalWidth = 0;
+  private originalHeight = 0;
 
   constructor() {
     this.subscriptions.add(
@@ -89,6 +105,53 @@ export class GridComponent {
     }
   }
 
+  itemSelected(item: itemGrid) {
+    this.currentItem = item;
+    this.addedElementsList.forEach(element => {
+      element.selected = false;
+    });
+    this.currentItem.selected = true;
+  }
+
+  startResize(event: MouseEvent, item: itemGrid): void {
+    this.resizing = true;
+    this.currentItem = item;
+    this.startX = event.clientX;
+    this.startY = event.clientY;
+    this.originalWidth = item.columnSpan;
+    this.originalHeight = item.rowSpan;
+
+    // Prevenir selección de texto mientras se redimensiona
+    event.preventDefault();
+  }
+
+  @HostListener('window:mousemove', ['$event'])
+  onMouseMove(event: MouseEvent): void {
+    if (!this.resizing) return;
+
+    const deltaX = event.clientX - this.startX;
+    const deltaY = event.clientY - this.startY;
+
+    const gridElement = document.querySelector('.grid-interactive') as HTMLElement;
+    if (!gridElement || !this.columns.value || !this.rows.value) return;
+
+    const gridRect = gridElement.getBoundingClientRect();
+    const cellWidth = gridRect.width / this.columns.value;
+    const cellHeight = gridRect.height / this.rows.value;
+
+    // Calcular nuevas dimensiones en función del arrastre
+    const newColumnSpan = Math.max(1, Math.round(this.originalWidth + deltaX / cellWidth));
+    const newRowSpan = Math.max(1, Math.round(this.originalHeight + deltaY / cellHeight));
+
+    this.currentItem.columnSpan = newColumnSpan;
+    this.currentItem.rowSpan = newRowSpan;
+  }
+
+  @HostListener('window:mouseup')
+  onMouseUp(): void {
+    this.resizing = false;
+  }
+
   onDragEnded(event: CdkDragEnd, item: itemGrid) {
     const gridElement = document.querySelector('.grid-interactive') as HTMLElement;
 
@@ -110,7 +173,6 @@ export class GridComponent {
     item.column = Math.max(1, Math.min(newColumn, this.columns.value));
     item.row = Math.max(1, Math.min(newRow, this.rows.value));
 
-
     // Forzar actualización del grid
     event.source.element.nativeElement.style.transform = '';
 
@@ -118,18 +180,13 @@ export class GridComponent {
 
 
   onDragStarted(event: CdkDragStart, item: itemGrid) {
-    console.log("started")
     this.dragPosition.update(current => {
       const newPosition = {
         x: 0,
         y: 0
       };
-      console.log(item.columnSpan);
-      console.log(item.rowSpan);
       return newPosition;
     });
-
-    console.log(item)
   }
 
   cdkDragMoved(event: CdkDragMove, item: itemGrid) {
@@ -146,7 +203,8 @@ export class GridComponent {
         row: element.row,
         id: this.addedElementsList.length + 1,
         rowSpan: 1,
-        columnSpan: 3
+        columnSpan: 1,
+        selected: false
       });
     }
   }

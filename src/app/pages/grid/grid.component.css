@@ -105,6 +105,12 @@
           cursor: grabbing;
         }
       }
+
+      /* clase para mostrar un elemento seleccionado */
+      .selected {
+        opacity: 1;
+        z-index: 12;
+      }
     }
   }
 

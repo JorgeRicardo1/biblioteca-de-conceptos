@@ -38,7 +38,7 @@
       @for(elementAdded of addedElementsList; track elementAdded){
       <div class="element-added" cdkDrag (cdkDragEnded)="onDragEnded($event, elementAdded)" cdkDragBoundary=".grid-interactive"
         (cdkDragStarted)="onDragStarted($event, elementAdded)" (cdkDragMoved)="cdkDragMoved($event, elementAdded)"
-        [cdkDragFreeDragPosition]="dragPosition()"
+        [cdkDragFreeDragPosition]="dragPosition()" (click)="itemSelected(elementAdded)" [ngClass]="{'selected': elementAdded.selected}"
         [ngStyle]="{
           'grid-row': elementAdded.row + ' / span ' + elementAdded.rowSpan,
           'grid-column': elementAdded.column + ' / span ' + elementAdded.columnSpan,
@@ -46,7 +46,7 @@
         }">
         <div class="element-added-close"><mat-icon>close</mat-icon></div>
         <div class="identify-text">div{{ elementAdded.id }}</div>
-        <div class="expand-icon"><mat-icon>aspect_ratio</mat-icon></div>
+        <div class="expand-icon" (mousedown)="startResize($event, elementAdded)"><mat-icon>aspect_ratio</mat-icon></div>
         <div class="movement-icon" cdkDragHandle><mat-icon>pan_tool</mat-icon></div>
       </div>
       }

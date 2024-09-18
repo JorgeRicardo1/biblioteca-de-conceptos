@@ -5,4 +5,5 @@ export interface itemGrid {
   column : number;
   rowSpan : number;
   columnSpan : number;
+  selected : boolean;
 }

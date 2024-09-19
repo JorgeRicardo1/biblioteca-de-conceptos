@@ -39,11 +39,8 @@
       <div class="element-added" cdkDrag (cdkDragEnded)="onDragEnded($event, elementAdded)"
         cdkDragBoundary=".grid-interactive" (cdkDragStarted)="onDragStarted($event, elementAdded)"
         (cdkDragMoved)="cdkDragMoved($event, elementAdded)" [cdkDragFreeDragPosition]="dragPosition()"
-        (click)="itemSelected(elementAdded)" [ngClass]="{'selected': elementAdded.selected}" [ngStyle]="{
-          'grid-row': elementAdded.row + ' / span ' + elementAdded.rowSpan,
-          'grid-column': elementAdded.column + ' / span ' + elementAdded.columnSpan,
-          'background-color': elementAdded.color
-        }">
+        (click)="itemSelected(elementAdded)" [ngClass]="{'selected': elementAdded.selected}"
+        [ngStyle]="getItemStyle(elementAdded)">
         <div class="element-added-close" (click)="removeElement(elementAdded)"><mat-icon>close</mat-icon></div>
         <div class="identify-text">div{{ elementAdded.id }}</div>
         <div class="expand-icon" (mousedown)="startResize($event, elementAdded)"><mat-icon>aspect_ratio</mat-icon></div>
@@ -162,10 +159,43 @@
         <mat-expansion-panel class="container-option-card">
           <mat-expansion-panel-header class="option-card-header">
             <mat-panel-title class="option-card-title">
-              <div class="option-title">Row/Column Start</div>
+              <div class="option-title">justify-self</div>
+              <mat-radio-group class=".radiosB-container" [(ngModel)]="justifySelfOption"
+                (ngModelChange)="justifySelfChange($event)">
+                <mat-radio-button value="stretch" (click)="$event.stopPropagation()">stretch</mat-radio-button>
+                <mat-radio-button value="start" (click)="$event.stopPropagation()">start</mat-radio-button>
+                <mat-radio-button value="end" (click)="$event.stopPropagation()">end</mat-radio-button>
+                <mat-radio-button value="center" (click)="$event.stopPropagation()">center</mat-radio-button>
+              </mat-radio-group>
             </mat-panel-title>
           </mat-expansion-panel-header>
-          <div class="description-option">contenido</div>
+          <div class="description-option">
+            Alinea un elemento hijo dentro de una celda de un CSS Grid en el eje horizontal. Tiene cuatro valores: start
+            (alinea a la izquierda), end (a la derecha), center (centra el elemento), y stretch (expande el elemento
+            para que ocupe todo el ancho de la celda). Controla cómo se coloca el contenido dentro de una celda sin
+            afectar la distribución general de la cuadrícula.
+          </div>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel class="container-option-card">
+          <mat-expansion-panel-header class="option-card-header">
+            <mat-panel-title class="option-card-title">
+              <div class="option-title">aling-self</div>
+              <mat-radio-group class=".radiosB-container" [(ngModel)]="alignSelfOption"
+                (ngModelChange)="alignSelfChange($event)">
+                <mat-radio-button value="stretch" (click)="$event.stopPropagation()">stretch</mat-radio-button>
+                <mat-radio-button value="start" (click)="$event.stopPropagation()">start</mat-radio-button>
+                <mat-radio-button value="end" (click)="$event.stopPropagation()">end</mat-radio-button>
+                <mat-radio-button value="center" (click)="$event.stopPropagation()">center</mat-radio-button>
+              </mat-radio-group>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div class="description-option">
+            Alinea un elemento hijo dentro de una celda de un CSS Grid en el eje vertical. Tiene cuatro valores: start
+            (alinea en la parte superior), end (en la parte inferior), center (centra el elemento verticalmente), y
+            stretch (expande el elemento para ocupar toda la altura de la celda). Controla la colocación del contenido
+            dentro de una celda verticalmente, sin afectar el resto de la cuadrícula.
+          </div>
         </mat-expansion-panel>
 
 

@@ -6,4 +6,6 @@ export interface itemGrid {
   rowSpan : number;
   columnSpan : number;
   selected : boolean;
+  alingSelf: string;
+  justifySelf: string;
 }

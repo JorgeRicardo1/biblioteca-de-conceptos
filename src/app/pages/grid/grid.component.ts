@@ -44,7 +44,9 @@ export class GridComponent {
     column: 0,
     rowSpan: 0,
     columnSpan: 0,
-    selected: false
+    selected: false,
+    alingSelf: 'stretch',
+    justifySelf: 'stretch'
   }
 
   resizing = false;
@@ -58,6 +60,10 @@ export class GridComponent {
   alignItemsOption = "stretch";
   alignContentOption = "start";
   justifyContentOption = "start";
+
+  //propiedades del item dentro de un contenedor grid
+  justifySelfOption = "stretch";
+  alignSelfOption = "stretch";
 
   constructor() {
     this.subscriptions.add(
@@ -119,10 +125,20 @@ export class GridComponent {
       'grid-template-columns': `repeat(${this.columns.value}, 1fr)`,
       'row-gap': `${this.rowGap.value}px`,
       'column-gap': `${this.columnGap.value}px`,
-      'justify-items' : this.justifyItemsOption,
+      'justify-items': this.justifyItemsOption,
       'align-items': this.alignItemsOption,
       'justify-content': this.justifyContentOption,
       'align-content': this.alignContentOption
+    }
+  }
+
+  getItemStyle(item: itemGrid) {
+    return {
+      'grid-row': item.row + ' / span ' + item.rowSpan,
+      'grid-column': item.column + ' / span ' + item.columnSpan,
+      'background-color': item.color,
+      'justify-self': item.justifySelf,
+      'align-self': item.alingSelf,
     }
   }
 
@@ -132,6 +148,14 @@ export class GridComponent {
       element.selected = false;
     });
     this.currentItem.selected = true;
+  }
+
+  justifySelfChange(value: string) {
+    this.currentItem.justifySelf = value;
+  }
+
+  alignSelfChange(value: string){
+    this.currentItem.alingSelf = value;
   }
 
   //funcion que se inicia para alargar o hacer mas pequeño un item dentro del grid
@@ -209,6 +233,7 @@ export class GridComponent {
 
 
   onDragStarted(event: CdkDragStart, item: itemGrid) {
+    this.currentItem = item;
     this.dragPosition.update(current => {
       const newPosition = {
         x: 0,
@@ -219,7 +244,7 @@ export class GridComponent {
   }
 
   cdkDragMoved(event: CdkDragMove, item: itemGrid) {
-
+    this.currentItem = item;
   }
 
 
@@ -233,7 +258,9 @@ export class GridComponent {
         id: this.addedElementsList.length + 1,
         rowSpan: 1,
         columnSpan: 1,
-        selected: false
+        selected: false,
+        alingSelf: 'stretch',
+        justifySelf: 'stretch'
       });
     }
   }

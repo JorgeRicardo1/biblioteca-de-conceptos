@@ -10,6 +10,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { itemGrid } from './interfaces/itemGrid';
 import { CdkDragEnd, CdkDragMove, CdkDragStart, DragDropModule, DragRef, Point } from '@angular/cdk/drag-drop';
 import { MatRadioModule } from '@angular/material/radio';
+import { RowGrid } from './interfaces/rowGrid';
+import { ColumnGrid } from './interfaces/columnGrid';
 
 @Component({
   selector: 'app-grid',
@@ -28,14 +30,11 @@ export class GridComponent {
 
   // controles para el grid
   rows = new FormControl(3);
-  columns = new FormControl(4);
+  columns = new FormControl(2);
   rowGap = new FormControl(0);
   columnGap = new FormControl(0);
 
   subscriptions = new Subscription();
-
-  dragPosition = signal({ x: 0, y: 0 });
-  style: any = {};
 
   currentItem: itemGrid = {
     id: 0,
@@ -49,11 +48,13 @@ export class GridComponent {
     justifySelf: 'stretch'
   }
 
+  //propiedades para el resizing de los items
   resizing = false;
   startX = 0;
   startY = 0;
   originalWidth = 0;
   originalHeight = 0;
+  dragPosition = signal({ x: 0, y: 0 });
 
   //propiedades del contenedor grid
   justifyItemsOption = "stretch";
@@ -65,12 +66,26 @@ export class GridComponent {
   justifySelfOption = "stretch";
   alignSelfOption = "stretch";
 
+  //lista de columnas y filas de el grid
+  rowsList: RowGrid[] = [{ magnitude: "fr", value: 1 }, { magnitude: "fr", value: 1 }, { magnitude: "fr", value: 1 }];
+  columnsList: ColumnGrid[] = [{ magnitude: "fr", value: 1 }, { magnitude: "fr", value: 1 }];
+
   constructor() {
     this.subscriptions.add(
       this.rows.valueChanges.subscribe(value => {
         if (!value) { value = 1 }
         this.controlGridList = [];
         this.createControlGrid();
+        if (value > this.rowsList.length) {
+          this.rowsList.push({
+            magnitude : "fr",
+            value : 1
+          })
+        }
+        else if(value < this.rowsList.length){
+          const length = this.rowsList.length;
+          this.rowsList.splice(length - 1, 1);
+        }
       })
     )
 
@@ -79,6 +94,16 @@ export class GridComponent {
         if (!value) { value = 1 }
         this.controlGridList = [];
         this.createControlGrid();
+        if (value > this.columnsList.length) {
+          this.columnsList.push({
+            magnitude : "fr",
+            value : 1
+          })
+        }
+        else if(value < this.columnsList.length){
+          const length = this.columnsList.length;
+          this.columnsList.splice(length - 1, 1);
+        }
       })
     )
 
@@ -111,8 +136,8 @@ export class GridComponent {
 
   getGridStyles() {
     return {
-      'grid-template-rows': `repeat(${this.rows.value}, 1fr)`,
-      'grid-template-columns': `repeat(${this.columns.value}, 1fr)`,
+      'grid-template-rows': this.generateStringRows(),
+      'grid-template-columns': this.generateStringColumns(),
       'row-gap': `${this.rowGap.value}px`,
       'column-gap': `${this.columnGap.value}px`,
 
@@ -121,8 +146,8 @@ export class GridComponent {
 
   getGridStylesInteractive() {
     return {
-      'grid-template-rows': `repeat(${this.rows.value}, 1fr)`,
-      'grid-template-columns': `repeat(${this.columns.value}, 1fr)`,
+      'grid-template-rows': this.generateStringRows(),
+      'grid-template-columns': this.generateStringColumns(),
       'row-gap': `${this.rowGap.value}px`,
       'column-gap': `${this.columnGap.value}px`,
       'justify-items': this.justifyItemsOption,
@@ -154,7 +179,7 @@ export class GridComponent {
     this.currentItem.justifySelf = value;
   }
 
-  alignSelfChange(value: string){
+  alignSelfChange(value: string) {
     this.currentItem.alingSelf = value;
   }
 
@@ -175,6 +200,9 @@ export class GridComponent {
   onMouseMove(event: MouseEvent): void {
     if (!this.resizing) return;
 
+    // Cambiar el cursor a modo de redimensionar
+    document.body.style.cursor = 'nwse-resize';
+
     const deltaX = event.clientX - this.startX;
     const deltaY = event.clientY - this.startY;
 
@@ -184,6 +212,7 @@ export class GridComponent {
     const gridRect = gridElement.getBoundingClientRect(); //obtenemos el tamaño de el grid
     const cellWidth = gridRect.width / this.columns.value; // tamaño de cada cuadricula
     const cellHeight = gridRect.height / this.rows.value;
+
 
     // Calcular nuevas dimensiones en función del arrastre
     const newColumnSpan = Math.max(1, Math.round(this.originalWidth + deltaX / cellWidth));
@@ -195,7 +224,11 @@ export class GridComponent {
 
   @HostListener('window:mouseup')
   onMouseUp(): void {
-    this.resizing = false;
+    if (this.resizing) {
+      // Restablecer el cursor al estilo por defecto
+      document.body.style.cursor = 'default';
+      this.resizing = false;
+    }
   }
 
   removeElement(itemSended: itemGrid) {
@@ -284,5 +317,21 @@ export class GridComponent {
         }
       }
     }
+  }
+
+  generateStringRows() : string{
+    let stringRows = '';
+    this.rowsList.forEach(row => {
+      stringRows += ' ' +`${row.value}${row.magnitude}`
+    });
+    return stringRows;
+  }
+
+  generateStringColumns() : string{
+    let stringColumns = '';
+    this.columnsList.forEach(column => {
+      stringColumns += ' ' +`${column.value}${column.magnitude}`
+    })
+    return stringColumns;
   }
 }

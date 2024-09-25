@@ -159,34 +159,43 @@
 
             <div class="dimension-container">
               <div class="dimension-title">Rows</div>
+              @for (row of rowsList; track $index) {
               <div class="dimension-options">
-                <div class="id-label">row1</div>
-                <input class="dimension-value" matInput type="number">
-                <button class="dimension-magnitude" mat-button [matMenuTriggerFor]="menu">fr</button>
+                <div class="id-label">row{{ row.id}}</div>
+                <input class="dimension-value" [(ngModel)]="row.value"
+                (ngModelChange)="onInputChangeRow($event, row)"
+                  matInput type="number">
+                <button class="dimension-magnitude" mat-button [matMenuTriggerFor]="menu">{{row.magnitude}}</button>
                 <mat-menu #menu="matMenu">
-                  <button mat-menu-item>Item 1</button>
-                  <button mat-menu-item>Item 2</button>
+                  <button mat-menu-item (click)="onMagnitudeChangeRow(row, 'fr')">fr</button>
+                  <button mat-menu-item (click)="onMagnitudeChangeRow(row, 'px')">px</button>
+                  <button mat-menu-item (click)="onMagnitudeChangeRow(row, '%')">%</button>
                 </mat-menu>
-                <button class="delete-dimension">
+                <button class="delete-dimension" (click)="onDeleteRow(row)">
                   <mat-icon>close</mat-icon>
                 </button>
               </div>
+              }
             </div>
 
             <div class="dimension-container">
               <div class="dimension-title">Columns</div>
+              @for (column of columnsList; track $index) {
               <div class="dimension-options">
-                <div class="id-label">column1</div>
-                <input class="dimension-value" type="number">
-                <button class="dimension-magnitude" mat-button [matMenuTriggerFor]="menu">fr</button>
+                <div class="id-label">col{{ column.id}}</div>
+                <input class="dimension-value" [(ngModel)]="column.value"
+                  (ngModelChange)="onInputChangeColumn($event, column)" matInput type="number">
+                <button class="dimension-magnitude" mat-button [matMenuTriggerFor]="menu">{{column.magnitude}}</button>
                 <mat-menu #menu="matMenu">
-                  <button mat-menu-item>Item 1</button>
-                  <button mat-menu-item>Item 2</button>
+                  <button mat-menu-item (click)="onMagnitudeChangeColumn(column, 'fr')">fr</button>
+                  <button mat-menu-item (click)="onMagnitudeChangeColumn(column, 'px')">px</button>
+                  <button mat-menu-item (click)="onMagnitudeChangeColumn(column, '%')">%</button>
                 </mat-menu>
-                <button class="delete-dimension">
+                <button class="delete-dimension" (click)="onDeleteColumn(column)">
                   <mat-icon>close</mat-icon>
                 </button>
               </div>
+              }
             </div>
 
           </div>

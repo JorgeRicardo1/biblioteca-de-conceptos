@@ -66,6 +66,7 @@
       width: 100%;
       box-sizing: border-box;
 
+
       .element-added {
         opacity: 0.6;
         z-index: 6;
@@ -179,7 +180,9 @@
 
 
     .dimension-container {
-
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
 
       .dimension-title {
         font-size: medium;
@@ -199,14 +202,11 @@
         flex-grow: 0;
         background-color: var(--color-bg-input);
         border: 2px solid var(--primary-color-bg500);
-        min-width: 21px;
-
       }
 
       .dimension-magnitude {
         max-height: 22px;
         padding: 0;
-        width: 22px;
         padding: 0;
         border: 2px solid var(--primary-color-bg500);
         border-radius: 0;
@@ -230,6 +230,10 @@
 
         }
       }
+
+      .delete-dimension:hover{
+        opacity: 0.5;
+      }
     }
   }
 }
@@ -239,3 +243,4 @@
 ::ng-deep .mat-mdc-form-field-subscript-wrapper {
   display: none;
 }
+

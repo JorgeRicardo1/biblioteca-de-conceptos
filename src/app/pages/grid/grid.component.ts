@@ -11,10 +11,10 @@ import { itemGrid } from './interfaces/itemGrid';
 import { CdkDragEnd, CdkDragMove, CdkDragStart, DragDropModule, DragRef, Point } from '@angular/cdk/drag-drop';
 import { MatRadioModule } from '@angular/material/radio';
 import { RowGrid } from './interfaces/rowGrid';
-import {MatButtonModule} from '@angular/material/button';
+import { MatButtonModule } from '@angular/material/button';
 import { ColumnGrid } from './interfaces/columnGrid';
-import {MatSelectModule} from '@angular/material/select';
-import {MatMenuModule} from '@angular/material/menu';
+import { MatSelectModule } from '@angular/material/select';
+import { MatMenuModule } from '@angular/material/menu';
 
 
 
@@ -72,22 +72,52 @@ export class GridComponent {
   alignSelfOption = "stretch";
 
   //lista de columnas y filas de el grid
-  rowsList: RowGrid[] = [{ magnitude: "fr", value: 1 }, { magnitude: "fr", value: 1 }, { magnitude: "fr", value: 1 }];
-  columnsList: ColumnGrid[] = [{ magnitude: "fr", value: 1 }, { magnitude: "fr", value: 1 }];
+  rowsList: RowGrid[] = [
+    {
+      magnitude: "fr",
+      value: 1,
+      id: 1
+    }, {
+      magnitude: "fr",
+      value: 1,
+      id: 2
+    }, {
+      magnitude: "fr",
+      value: 1,
+      id: 3
+    }];
+
+  columnsList: ColumnGrid[] = [
+    {
+      magnitude: "fr",
+      value: 1,
+      id: 1
+    }, {
+      magnitude: "fr",
+      value: 1,
+      id: 2
+    }];
+  // propiedades de las fiilas y columnas de el grid
+  numberRows = new FormControl(1);
+  numberColumns = new FormControl(1);
+
+
 
   constructor() {
     this.subscriptions.add(
       this.rows.valueChanges.subscribe(value => {
         if (!value) { value = 1 }
+        this.numberRows.setValue(1);
         this.controlGridList = [];
         this.createControlGrid();
         if (value > this.rowsList.length) {
           this.rowsList.push({
-            magnitude : "fr",
-            value : 1
+            magnitude: "fr",
+            value: 1,
+            id: value
           })
         }
-        else if(value < this.rowsList.length){
+        else if (value < this.rowsList.length) {
           const length = this.rowsList.length;
           this.rowsList.splice(length - 1, 1);
         }
@@ -99,15 +129,17 @@ export class GridComponent {
       this.columns.valueChanges.subscribe(value => {
 
         if (!value) { value = 1 }
+        this.numberColumns.setValue(1);
         this.controlGridList = [];
         this.createControlGrid();
         if (value > this.columnsList.length) {
           this.columnsList.push({
-            magnitude : "fr",
-            value : 1
+            magnitude: "fr",
+            value: 1,
+            id: value
           })
         }
-        else if(value < this.columnsList.length){
+        else if (value < this.columnsList.length) {
           const length = this.columnsList.length;
           this.columnsList.splice(length - 1, 1);
         }
@@ -327,19 +359,100 @@ export class GridComponent {
     }
   }
 
-  generateStringRows() : string{
+  generateStringRows(): string {
     let stringRows = '';
     this.rowsList.forEach(row => {
-      stringRows += ' ' +`${row.value}${row.magnitude}`
+      stringRows += ' ' + `${row.value}${row.magnitude}`
     });
     return stringRows;
   }
 
-  generateStringColumns() : string{
+  generateStringColumns(): string {
     let stringColumns = '';
     this.columnsList.forEach(column => {
-      stringColumns += ' ' +`${column.value}${column.magnitude}`
+      stringColumns += ' ' + `${column.value}${column.magnitude}`
     })
     return stringColumns;
+  }
+
+  onInputChangeColumn(event: Event, column: ColumnGrid) {
+    const inputElement = event.target as HTMLInputElement;
+
+    if(!inputElement){
+      return;
+    }
+    let newValue = inputElement.value;
+
+    if(!newValue){
+      newValue = "1";
+    }
+
+    const updatedColumnsList = this.columnsList.map(col => {
+      if (col.id === column.id) {
+        return { ...col, value: parseInt(newValue) };
+      }
+      return col;
+    });
+
+    // Actualiza la lista de columnas
+    this.columnsList = updatedColumnsList;
+
+  }
+
+  onInputChangeRow(event: Event, row: ColumnGrid) {
+    const inputElement = event.target as HTMLInputElement;
+
+    if(!inputElement){
+      return;
+    }
+    let newValue = inputElement.value;
+    if(!newValue){
+      newValue = "1";
+    }
+
+    const updatedRowList = this.columnsList.map(r => {
+      if (r.id === row.id) {
+        return { ...r, value: parseInt(newValue) };
+      }
+      return r;
+    });
+
+    // Actualiza la lista de columnas
+    this.rowsList = updatedRowList;
+  }
+
+  onMagnitudeChangeColumn(column: ColumnGrid, newMagnitude: string) {
+    console.log(`Column ${column.id} changed magnitude to ${newMagnitude}`);
+    column.magnitude = newMagnitude;
+  }
+
+  onMagnitudeChangeRow(row: RowGrid, newMagnitude: string) {
+    console.log(`Row ${row.id} changed magnitude to ${newMagnitude}`);
+    row.magnitude = newMagnitude;
+  }
+
+  onDeleteRow(row: RowGrid) {
+    const index = this.rowsList.findIndex(r => r.id === row.id);
+    if (index !== -1) {
+      this.rowsList.splice(index, 1);
+    }
+    this.rowsList = this.rowsList.map((r, i) => ({
+      ...r,
+      id: i + 1  // Nuevo ID basado en la posición en el array (comenzando desde 1)
+    }));
+    this.rows.setValue(this.rowsList.length);
+  }
+
+  onDeleteColumn(column: ColumnGrid) {
+    const index = this.rowsList.findIndex(col => col.id === column.id);
+    if (index !== -1) {
+      this.columnsList.splice(index, 1);
+    }
+
+    this.columnsList = this.columnsList.map((c, i) => ({
+      ...c,
+      id: i + 1  // Nuevo ID basado en la posición en el array (comenzando desde 1)
+    }));
+    this.columns.setValue(this.columnsList.length);
   }
 }

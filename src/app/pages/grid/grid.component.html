@@ -149,6 +149,49 @@
           </div>
         </mat-expansion-panel>
 
+        <mat-expansion-panel class="container-option-card">
+          <mat-expansion-panel-header class="option-card-header">
+            <mat-panel-title class="option-card-title">
+              <div class="option-title">Filas y Columnas</div>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div class="rows-columns-options">
+
+            <div class="dimension-container">
+              <div class="dimension-title">Rows</div>
+              <div class="dimension-options">
+                <div class="id-label">row1</div>
+                <input class="dimension-value" matInput type="number">
+                <button class="dimension-magnitude" mat-button [matMenuTriggerFor]="menu">fr</button>
+                <mat-menu #menu="matMenu">
+                  <button mat-menu-item>Item 1</button>
+                  <button mat-menu-item>Item 2</button>
+                </mat-menu>
+                <button class="delete-dimension">
+                  <mat-icon>close</mat-icon>
+                </button>
+              </div>
+            </div>
+
+            <div class="dimension-container">
+              <div class="dimension-title">Columns</div>
+              <div class="dimension-options">
+                <div class="id-label">column1</div>
+                <input class="dimension-value" type="number">
+                <button class="dimension-magnitude" mat-button [matMenuTriggerFor]="menu">fr</button>
+                <mat-menu #menu="matMenu">
+                  <button mat-menu-item>Item 1</button>
+                  <button mat-menu-item>Item 2</button>
+                </mat-menu>
+                <button class="delete-dimension">
+                  <mat-icon>close</mat-icon>
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </mat-expansion-panel>
+
       </mat-accordion>
     </div>
 

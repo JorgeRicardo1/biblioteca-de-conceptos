@@ -170,6 +170,68 @@
       }
     }
   }
+
+  /* propiedades para las opciones de las filas y columnas del grid */
+  .rows-columns-options {
+    display: flex;
+    gap: 10px;
+    align-items: stretch;
+
+
+    .dimension-container {
+
+
+      .dimension-title {
+        font-size: medium;
+        font-weight: bolder;
+      }
+
+      .dimension-options {
+        display: flex;
+      }
+
+      .id-label {
+        background-color: var(--color-bg-info-text);
+        border: 1px solid var(--primary-color-bg500);
+      }
+
+      .dimension-value {
+        flex-grow: 0;
+        background-color: var(--color-bg-input);
+        border: 2px solid var(--primary-color-bg500);
+        min-width: 21px;
+
+      }
+
+      .dimension-magnitude {
+        max-height: 22px;
+        padding: 0;
+        width: 22px;
+        padding: 0;
+        border: 2px solid var(--primary-color-bg500);
+        border-radius: 0;
+      }
+
+      .delete-dimension {
+        background-color: red;
+        color: white;
+        width: 22px;
+        height: 22px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0;
+        border: none;
+        cursor: pointer;
+
+        mat-icon {
+          font-size: 16px;
+          line-height: 1.5;
+
+        }
+      }
+    }
+  }
 }
 
 

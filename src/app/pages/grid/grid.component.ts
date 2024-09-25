@@ -11,13 +11,18 @@ import { itemGrid } from './interfaces/itemGrid';
 import { CdkDragEnd, CdkDragMove, CdkDragStart, DragDropModule, DragRef, Point } from '@angular/cdk/drag-drop';
 import { MatRadioModule } from '@angular/material/radio';
 import { RowGrid } from './interfaces/rowGrid';
+import {MatButtonModule} from '@angular/material/button';
 import { ColumnGrid } from './interfaces/columnGrid';
+import {MatSelectModule} from '@angular/material/select';
+import {MatMenuModule} from '@angular/material/menu';
+
+
 
 @Component({
   selector: 'app-grid',
   standalone: true,
   imports: [MatFormFieldModule, MatInputModule, MatExpansionModule, ReactiveFormsModule, FormsModule,
-    CommonModule, MatIconModule, DragDropModule, MatRadioModule],
+    CommonModule, MatIconModule, DragDropModule, MatRadioModule, MatButtonModule, MatSelectModule, MatMenuModule],
   templateUrl: './grid.component.html',
   styleUrl: './grid.component.css'
 })
@@ -86,11 +91,13 @@ export class GridComponent {
           const length = this.rowsList.length;
           this.rowsList.splice(length - 1, 1);
         }
+        console.log(this.rowsList);
       })
     )
 
     this.subscriptions.add(
       this.columns.valueChanges.subscribe(value => {
+
         if (!value) { value = 1 }
         this.controlGridList = [];
         this.createControlGrid();
@@ -104,6 +111,7 @@ export class GridComponent {
           const length = this.columnsList.length;
           this.columnsList.splice(length - 1, 1);
         }
+        console.log(this.columnsList);
       })
     )
 

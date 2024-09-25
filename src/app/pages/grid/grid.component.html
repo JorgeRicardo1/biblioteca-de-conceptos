@@ -162,8 +162,7 @@
               @for (row of rowsList; track $index) {
               <div class="dimension-options">
                 <div class="id-label">row{{ row.id}}</div>
-                <input class="dimension-value" [(ngModel)]="row.value"
-                (ngModelChange)="onInputChangeRow($event, row)"
+                <input class="dimension-value" [(ngModel)]="row.value" (ngModelChange)="onInputChangeRow($event, row)"
                   matInput type="number">
                 <button class="dimension-magnitude" mat-button [matMenuTriggerFor]="menu">{{row.magnitude}}</button>
                 <mat-menu #menu="matMenu">
@@ -252,6 +251,48 @@
 
 
       </mat-accordion>
+    </div>
+  </div>
+  <div class="code-section">
+    <div class="code-container">
+      <div class="title-typecode">Codigo Css</div>
+      <div class="code-output-container">
+        <pre><code class="language-css">
+.grid-container&#123;
+          display: grid;
+          grid-template-rows: {{generateStringRows()}};
+          grid-template-columns: {{generateStringColumns()}};
+          gap: 0;
+          width: 100%;
+          height: 100%;
+          &#125;
+        </code></pre>
+        @for (item of addedElementsList; track $index) {
+          <pre><code class="language-css">
+#div{{item.id}}&#123;
+      grid-row: {{item.row}} span {{item.rowSpan}},
+      grid-column: {{item.column}} span {{item.columnSpan}},
+      background-color: {{item.color}},
+      justify-self: {{item.justifySelf}},
+      align-self: {{item.alingSelf}},
+      &#125;
+          </code></pre>
+        }
+
+      </div>
+    </div>
+
+    <div class="code-container">
+      <div class="title-typecode">Codigo Html</div>
+      <div class="code-output-container">
+        <pre><code class="language-html">
+&lt;div class="grid-container"&gt;
+  @for (element of addedElementsList; track $index) {
+    &lt;div id="div{{element.id}}" class="grid-items"&gt;&lt;/div&gt;
+  }
+&lt;/div&gt;
+        </code></pre>
+      </div>
     </div>
   </div>
 </section>

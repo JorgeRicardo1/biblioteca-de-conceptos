@@ -145,6 +145,23 @@
       flex: 1;
     }
   }
+
+  .code-section{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    .code-container{
+      .title-typecode{
+        font-size: large;
+        font-weight: bold;
+        background-color: var(--secondary-color-bg500) ;
+        padding: 6px 2px;
+      }
+      .code-output-container{
+        background-color: var( --primary-color-bg);
+      }
+    }
+  }
 }
 
 /* estilos para las cards de las opciones del flex */

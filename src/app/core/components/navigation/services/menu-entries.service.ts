@@ -10,8 +10,8 @@ export class MenuEntriesService {
   constructor() { }
 
   private menu: MenuEntry[] = [
-    { text: 'flex', route: 'flexbox', icon: 'web_stories'},
-    { text: 'grid', route: 'grid', icon: 'dashboard'},
+    { text: 'flexbox', route: 'flexbox', icon: 'people'},
+    { text: 'grid', route: 'grid', icon: 'speed'},
 
   ]
 

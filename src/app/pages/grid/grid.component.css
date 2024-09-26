@@ -2,7 +2,6 @@
 
   .parameters-grid-container {
     display: flex;
-    flex-wrap: wrap;
     margin: 15px 0;
     gap: 10px;
     padding: 2px;

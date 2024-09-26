@@ -96,7 +96,10 @@
           }
         },
         "deploy": {
-          "builder": "angular-cli-ghpages:deploy"
+          "builder": "angular-cli-ghpages:deploy",
+          "options": {
+            "buildTarget": "biblioteca-de-conceptos:build:production"
+          }
         }
       }
     }

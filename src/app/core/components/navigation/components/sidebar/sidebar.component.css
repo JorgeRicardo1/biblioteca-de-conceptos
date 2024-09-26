@@ -1,63 +1,73 @@
-.sidenav {
+.sidenav-container {
+  height: 100%;
 
-  box-sizing: border-box;
-  box-shadow: 0 0 10px -5px;
-  border: none;
-  padding: 0 10px;
-  background-color: var(--primary-color-bg);
+  .sidenav {
 
-  .title-container {
-    cursor: pointer;
-  }
+    box-sizing: border-box;
+    box-shadow: 0 0 10px -5px;
+    border: none;
+    padding: 0 10px;
+    background-color: var(--primary-color-bg);
 
-  .buttons {
-    display: flex;
-    flex-direction: column;
-    cursor: pointer;
+    .title-container {
+      cursor: pointer;
+    }
 
-    .button {
-      height: 50px;
-      min-width: 70px;
-      max-width: 270px;
+    .buttons {
       display: flex;
-      color: #323232;
-      font-size: medium;
-      border: none;
-      box-shadow: none;
-      background: transparent;
-      align-items: center;
-    }
+      flex-direction: column;
+      cursor: pointer;
 
-    .button:hover {
-      background-color: #eeeeee;
-    }
+      .button {
+        height: 50px;
+        min-width: 70px;
+        max-width: 270px;
+        display: flex;
+        color: #323232;
+        font-size: medium;
+        border: none;
+        box-shadow: none;
+        background: transparent;
+        align-items: center;
+      }
 
-    mat-icon {
-      color: #323232;
-      padding-right: 40px;
+      .button:hover {
+        background-color: #eeeeee;
+      }
+
+      mat-icon {
+        color: #323232;
+        padding-right: 40px;
+        color: var(--primary-color);
+      }
     }
   }
-}
 
-.content {
-
-
-  .main-container {
-    min-height: 100vh;
-    max-height: 95vh;
+  .content {
     display: flex;
     flex-direction: column;
+    height: 100%;
 
-    .toolbar {
-      font-size: 30px;
-      background-color: var(--primary-color);
-      padding: 10px;
-      font-weight: bold;
-    }
+    .main-container {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
 
-    .current-page{
-      padding-left: 10px;
-      padding-right: 10px;
+      .toolbar {
+        font-size: 30px;
+        background-color: var(--primary-color);
+        padding: 10px;
+        font-weight: bold;
+      }
+
+      .current-page {
+        padding-left: 10px;
+        padding-right: 10px;
+        height: 100%
+      }
     }
   }
 }
+
+
+
